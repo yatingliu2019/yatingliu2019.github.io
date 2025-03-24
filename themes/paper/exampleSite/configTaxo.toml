@@ -1,10 +1,10 @@
 timeout = 30000
 enableInlineShortcodes = true
 
-# [taxonomies]
-# category = "categories"
-# tag = "tags"
-# series = "series"
+[taxonomies]
+category = "categories"
+tag = "tags"
+series = "series"
 
 [privacy]
 

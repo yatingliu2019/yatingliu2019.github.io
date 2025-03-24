@@ -1,5 +1,5 @@
-baseURL = "https://yatingliu2019.github.io/"
-title = "Liuyating's Blog"
+baseURL = "https://hugo-paper.vercel.app/"
+title = "Paper"
 author = "Steve Francia"
 copyright = "© 2025, lee.so"
 languageCode = "en"
@@ -12,17 +12,17 @@ ignoreErrors = ["error-remote-getjson"]
   pagerSize = 3
 
 # ------------------------------
-theme = "paper"
-publishDir = "docs"
+theme = "hugo-paper"
 
 [params]
   color = 'linen'
-  github = 'yatingliu2019/'
-  instagram = 'nan.xiaobei'#CSDN 
+  twitter = 'nanxiaobei'
+  github = 'nanxiaobei'
+  instagram = 'nan.xiaobei'
 
 avatar = 'nanxiaobei@gmail.com'
-  name = 'Liuyating'
-  bio = '个人博客'
+  name = 'Lee'
+  bio = 'Discover fresh context'
 # ------------------------------
 
 # needed to  render raw HTML (e.g. <sub>, <sup>, <kbd>, <mark>)
