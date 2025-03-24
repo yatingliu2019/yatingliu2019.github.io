@@ -40,12 +40,12 @@ avatar = 'https://yatingliu2019.github.io/images/p1.jpg'
 
   [[menu.main]]
     identifier = "about"
-    name = "About"
+    name = "科教经历"
     url = "/about/"
     weight = 10
   [[menu.main]]
     identifier = "contact"
-    name = "Contact"
+    name = "联系方式"
     url = "/contact/"
     weight = 10
 
