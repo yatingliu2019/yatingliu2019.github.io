@@ -25,7 +25,7 @@ buildExpired = false
 
 avatar = 'https://yatingliu2019.github.io/images/p1.jpg'
   name = 'Liuyating'
-  bio = 'Discover fresh context'
+  bio = '理解万岁'
 # ------------------------------
 
 # needed to  render raw HTML (e.g. <sub>, <sup>, <kbd>, <mark>)
