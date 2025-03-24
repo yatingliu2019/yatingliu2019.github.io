@@ -20,8 +20,8 @@ buildExpired = false
 
 [params]
   color = 'linen'
-  github = 'nanxiaobei'
-  instagram = 'nan.xiaobei'
+  github = 'yatingliu2019'
+  mastodon = 'https://blog.csdn.net/qq_51870267?spm=1011.2415.3001.5111'
 
 avatar = 'https://yatingliu2019.github.io/images/p1.jpg'
   name = 'Liuyating'
