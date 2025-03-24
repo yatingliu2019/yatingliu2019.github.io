@@ -9,19 +9,22 @@ enableInlineShortcodes = true
 # See https://github.com/gohugoio/hugo/issues/7228#issuecomment-714490456
 ignoreErrors = ["error-remote-getjson"]
 [pagination]
-  pagerSize = 3
+  pagerSize = 10
 
 # ------------------------------
 # theme = "hugo-paper"
 publishDir = "docs"
+buildDrafts = true
+buildFuture = false
+buildExpired = false
 
 [params]
   color = 'linen'
   github = 'nanxiaobei'
   instagram = 'nan.xiaobei'
 
-avatar = 'nanxiaobei@gmail.com'
-  name = 'Lee'
+avatar = 'https://yatingliu2019.github.io/images/p1.jpg'
+  name = 'Liuyating'
   bio = 'Discover fresh context'
 # ------------------------------
 
