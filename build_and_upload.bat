@@ -1,4 +1,4 @@
 hugo --destination docs
 git add .
-git commit -m "test: test image and post"
+git commit -m "docs: update website"
 git push origin master

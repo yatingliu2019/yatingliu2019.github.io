@@ -1,25 +1,88 @@
 +++
-title = "About"
-description = "Hugo, the world's fastest framework for building websites"
+title = "教育经历及科研竞赛"
+description = "教育经历及科研竞赛"
 date = "2019-02-28"
 aliases = ["about-us", "about-hugo", "contact"]
-author = "lee.so"
+author = "lyt"
 +++
 
-Written in Go, Hugo is an open source static site generator available under the [Apache Licence 2.0.](https://github.com/gohugoio/hugo/blob/master/LICENSE) Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.
+## 教育经历
 
-Hugo makes use of a variety of open source projects including:
+### （保研）大连理工大学(985工程和211工程、双一流) - 信息与通信工程 - 硕士
+- 2023.09-至今
 
-- https://github.com/yuin/goldmark
-- https://github.com/alecthomas/chroma
-- https://github.com/muesli/smartcrop
-- https://github.com/spf13/cobra
-- https://github.com/spf13/viper
+- 主修课程：数据结构与算法、矩阵与数值分析、数理统计、面向对象编程等
 
-Hugo is ideal for blogs, corporate websites, creative portfolios, online magazines, single page applications or even a website with thousands of pages.
+### 辽宁大学(211工程、双一流) - 电子信息科学与技术 - 学士
+- 2019.09-2023.06
 
-Hugo is for people who want to hand code their own website without worrying about setting up complicated runtimes, dependencies and databases.
+- 学业情况：专业排名 ：3/83、加权成绩 ：89.66/100
 
-Websites built with Hugo are extremely fast, secure and can be deployed anywhere including, AWS, GitHub Pages, Heroku, Netlify and any other hosting provider.
+- 主修课程：电路分析基础、通信原理、数字信号处理、信号与系统等
 
-Learn more and contribute on [GitHub](https://github.com/gohugoio).
+## 科研经历
+
+### 基于以数据为中心的图变换的推荐系统测试时间自适应（暂定）
+1.
+### 用户物品推荐（暂定）
+1.
+## 竞赛经历
+
+● 国家级奖项
+
+- 美国大学生数学建模大赛 | 国家一等奖
+
+- 美国大学生数学建模大赛 | 国家三等奖
+
+- 中国大学生计算机设计大赛 | 国家三等奖
+
+● 省级奖项
+
+- 中国大学生计算机设计大赛 | 省级一等奖
+
+- 辽宁省大学生数学建模竞赛 | 省级一等奖
+
+- “挑战杯”辽宁省大学生创业计划竞赛 | 辽宁省银奖
+
+- 全国大学生电子设计竞赛 | 省级二等奖
+
+- 辽宁省大学生数学建模竞赛 | 省级二等奖
+
+- 全国大学生电子设计竞赛 | 省级三等奖
+
+● 市级奖项
+
+- 沈阳市优秀大学生 | 市级
+
+● 校级奖项
+- 2023-2024年第一学年校奖学金 | 校二等奖学金
+
+- 2022-2023年第二学期校奖学金 | 校一等奖学金
+
+- 2022-2023年第一学期校奖学金 | 校一等奖学金
+
+- 2021-2022年第二学期校奖学金 | 校一等奖学金
+
+- 2021-2022年第一学期校奖学金 | 校一等奖学金
+
+- 2020-2021年第二学期校奖学金 | 校一等奖学金
+
+- 2020-2021年第一学期校奖学金 | 校一等奖学金
+
+- 2019-2020年第二学期校奖学金 | 校二等奖学金
+
+- 2019-2020年第一学期校奖学金 | 校二等奖学金
+
+- 全国大学生电子商务“创新、创意及创业”挑战赛 | 校一等奖
+
+● 证书
+
+- 雅思(IELTS)证书 | 6.5分
+
+- 全国大学英语四级考试(CET)证书 | 619分
+
+- 全国大学英语六级考试(CET)证书 | 520分
+
+- 校图书馆志愿者证书 | 60小时
+
+- 美丽中国第九届梦想导师项目证书 | 30小时
