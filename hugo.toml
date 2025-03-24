@@ -13,6 +13,7 @@ ignoreErrors = ["error-remote-getjson"]
 
 # ------------------------------
 theme = "paper"
+publishDir = "docs"
 
 [params]
   color = 'linen'
