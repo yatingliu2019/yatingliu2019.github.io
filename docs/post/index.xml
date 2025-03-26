@@ -7,7 +7,7 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>© 2025, lyt.so</copyright>
-    <lastBuildDate>Mon, 11 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 12 Mar 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://yatingliu2019.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>test again</title>
@@ -22,6 +22,13 @@
       <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
       <guid>https://yatingliu2019.github.io/post/placeholder-text/</guid>
       <description>&lt;p&gt;Lorem est tota propiore conpellat pectoribus de pectora summo.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>test-again-today</title>
+      <link>https://yatingliu2019.github.io/post/test-again-today/</link>
+      <pubDate>Tue, 12 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>https://yatingliu2019.github.io/post/test-again-today/</guid>
+      <description></description>
     </item>
     <item>
       <title>Markdown Syntax Guide</title>
