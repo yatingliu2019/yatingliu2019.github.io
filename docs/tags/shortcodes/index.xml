@@ -30,12 +30,5 @@
       <guid>https://yatingliu2019.github.io/post/test/</guid>
       <description>&lt;h2 id=&#34;cehsi&#34;&gt;cehsi&lt;/h2&gt;&#xA;&lt;p&gt;sdjhfklshdf&lt;/p&gt;</description>
     </item>
-    <item>
-      <title>Rich Content</title>
-      <link>https://yatingliu2019.github.io/post/rich-content/</link>
-      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>https://yatingliu2019.github.io/post/rich-content/</guid>
-      <description>&lt;p&gt;Hugo ships with several &lt;a href=&#34;https://gohugo.io/content-management/shortcodes/#use-hugos-built-in-shortcodes&#34;&gt;Built-in Shortcodes&lt;/a&gt; for rich content, along with a &lt;a href=&#34;https://gohugo.io/about/hugo-and-gdpr/&#34;&gt;Privacy Config&lt;/a&gt; and a set of Simple Shortcodes that enable static and no-JS versions of various social media embeds.&lt;/p&gt;&#xA;&lt;h2&gt;&lt;/h2&gt;</description>
-    </item>
   </channel>
 </rss>

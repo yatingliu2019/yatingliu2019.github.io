@@ -7,13 +7,27 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>© 2025, lyt.so</copyright>
-    <lastBuildDate>Tue, 12 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 26 Dec 2023 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://yatingliu2019.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Index</title>
       <link>https://yatingliu2019.github.io/tags/index/</link>
-      <pubDate>Tue, 12 Mar 2019 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 26 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://yatingliu2019.github.io/tags/index/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pytorch学习记录</title>
+      <link>https://yatingliu2019.github.io/tags/pytorch%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Tue, 26 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://yatingliu2019.github.io/tags/pytorch%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>深度学习</title>
+      <link>https://yatingliu2019.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Tue, 26 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://yatingliu2019.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</guid>
       <description></description>
     </item>
     <item>
@@ -56,13 +70,6 @@
       <link>https://yatingliu2019.github.io/tags/text/</link>
       <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
       <guid>https://yatingliu2019.github.io/tags/text/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Emoji</title>
-      <link>https://yatingliu2019.github.io/tags/emoji/</link>
-      <pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>https://yatingliu2019.github.io/tags/emoji/</guid>
       <description></description>
     </item>
   </channel>

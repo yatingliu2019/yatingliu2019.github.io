@@ -1,0 +1,281 @@
+<!doctype html>
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg:#faf8f1"
+  lang="en"
+  dir="ltr"
+><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>Clipcap学习笔记-Liuyating&#39;s Blog</title>
+
+  
+  <meta name="theme-color" />
+
+  <meta name="description" content="一、配置学习
+新建虚拟环境
+必须要有python的版本，否则pip之类的都用不了
+conda create -n clipcap python=3.8
+启动环境
+conda activate clipcap
+二、运行github文件
+参考Github链接，下载zip文件，然后上传到MobaXterm，参考MoaXterm博文
+改变路径cd &lt;路径&gt;，激活环境conda activate clipcap
+运行第一条命令pip install -r requirements.txt，等待
+运行python process_flickr.py，这时候有错误提示，显示缺少ViT-B-32.pt
+所以，下载ViT-B-32.pt
+再次运行python process_flickr.py，发现还少东西，dataset没有数据集flickr30k
+flickr30k下载官网，填好表格，会给你的邮箱发送下载链接。上传flickr30k-images.tar和flickr30k.tar.gz。
+解压flickr30k文件
+tar -xvf flickr30k-images.tar
+运行bash scripts/train_finetune_gpt2.sh，会报错，原因在于pre_model/gpt2的文件夹里面少pytorch_model.bin文件
+PS:pytorch_model.bin是PyTorch模型的二进制文件，包含了训练好的模型权重参数。少GPT2的模型权重参数，当然没法继续。下载，上传到文件夹。再次运行。此时就可以成功训练了。
+三、clipcap代码阅读
+训练训练MLP&#43;GPT2 tuning实在是太慢了&hellip;趁这段时间分析一下代码，重点看一下train.py和predict.py
+关于导入python的库和模块
+clipcap是pytorch框架下的，然后从pytorch中导入处理数据的类：Dataset和DataLoader，以及用来可视化训练过程的Tensorboard。
+关于Bert模型的配置和分词器（token）是从Huggingface的transformer库中导入的。
+&rsquo; tqdm &lsquo;库用来显示进度条，&rsquo; loguru &lsquo;库中的&rsquo; logger &lsquo;用来日志记录，&rsquo; argparse &lsquo;模块用来解析命令，&rsquo; os &lsquo;模块用来与计算机操作系统交互，&rsquo; join &lsquo;函数用来连接文件路径，&rsquo; functional &lsquo;模块包含不可学习参数的函数，如激活函数和损失函数。
+导入模块
+from enum import Enum: 导入 Python 的 Enum 类，用于创建枚举类型。
+from transformers import GPT2Tokenizer, GPT2LMHeadModel, AdamW, get_linear_schedule_with_warmup, BertModel, BertConfig, GPT2Config: 导入 Hugging Face 的 Transformers 库中的相关类和函数，包括 GPT-2 模型和 tokenizer，AdamW 优化器，学习率调度器等。" />
+  <meta name="author" content="lyt" /><link rel="preload stylesheet" as="style" href="https://yatingliu2019.github.io/main.min.css" />
+
+  
+  <link rel="preload" as="image" href="https://yatingliu2019.github.io/theme.png" />
+
+  <link rel="preload" as="image" href="https://yatingliu2019.github.io/images/p1.jpg" />
+
+  <link rel="preload" as="image" href="https://yatingliu2019.github.io/github.svg" /><link rel="preload" as="image" href="https://yatingliu2019.github.io/mastodon.svg" />
+
+  <script
+    defer
+    src="https://yatingliu2019.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+
+  
+  <link
+    rel="icon"
+    href="https://yatingliu2019.github.io/favicon.ico"
+  />
+  <link
+    rel="apple-touch-icon"
+    href="https://yatingliu2019.github.io/apple-touch-icon.png"
+  />
+
+  <meta name="generator" content="Hugo 0.145.0">
+  <meta itemprop="name" content="Clipcap学习笔记">
+  <meta itemprop="description" content="A brief description of Hugo Shortcodes">
+  <meta itemprop="datePublished" content="2023-12-26T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2023-12-26T00:00:00+00:00">
+  <meta itemprop="wordCount" content="147">
+  <meta itemprop="keywords" content="深度学习,Pytorch学习记录"><meta property="og:url" content="https://yatingliu2019.github.io/post/clipcap/">
+  <meta property="og:site_name" content="Liuyating&#39;s Blog">
+  <meta property="og:title" content="Clipcap学习笔记">
+  <meta property="og:description" content="A brief description of Hugo Shortcodes">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2023-12-26T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-12-26T00:00:00+00:00">
+    <meta property="article:tag" content="深度学习">
+    <meta property="article:tag" content="Pytorch学习记录">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Clipcap学习笔记">
+  <meta name="twitter:description" content="A brief description of Hugo Shortcodes">
+
+  <link rel="canonical" href="https://yatingliu2019.github.io/post/clipcap/" />
+</head>
+<body
+    class="bg-(--bg) text-black antialiased duration-200 ease-out [-webkit-tap-highlight-color:transparent] dark:text-white"
+  ><header
+  class="mx-auto flex h-[4.5rem] max-w-(--w) px-8 whitespace-nowrap lg:justify-center"
+>
+  <div class="relative z-50 flex items-center ltr:mr-auto rtl:ml-auto">
+    <a
+      class="-translate-y-[1px] text-2xl font-medium"
+      href="https://yatingliu2019.github.io/"
+      >Liuyating&#39;s Blog</a
+    >
+    <div
+      class="btn-dark text-[0px] ltr:ml-4 rtl:mr-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden ltr:-mr-8 rtl:-ml-8"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full flex-col justify-center bg-(--bg) pb-16 duration-200 select-none lg:static lg:h-auto lg:flex-row lg:bg-transparent! lg:pb-0 lg:transition-none"
+  ><nav
+      class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-10 rtl:space-x-reverse"
+    ><a
+        class="block text-center text-xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/about/"
+        >教育及科研经历</a
+      ><a
+        class="block text-center text-xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/contact/"
+        >联系方式</a
+      ></nav><nav
+      class="mt-12 flex justify-center space-x-10 lg:mt-0 lg:items-center ltr:lg:ml-14 rtl:space-x-reverse rtl:lg:mr-14 dark:invert"
+    >
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/yatingliu2019"
+        target="_blank"
+        rel="me"
+      >github</a>
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./mastodon.svg)"
+        href="https://blog.csdn.net/qq_51870267?spm=1011.2415.3001.5111"
+        target="_blank"
+        rel="me"
+      >mastodon</a>
+    </nav>
+  </div>
+</header>
+<main
+      class="prose prose-neutral dark:prose-invert relative mx-auto min-h-[calc(100vh-9rem)] max-w-(--w) px-8 pt-14 pb-16"
+    ><article>
+  <header class="mb-14">
+    <h1 class="my-0! pb-2.5">Clipcap学习笔记</h1><div class="text-xs antialiased opacity-60"><time>Dec 26, 2023</time><span class="mx-1">&middot;</span>
+      <span>lyt</span></div></header>
+
+  <section><h1 id="一配置学习">一、配置学习</h1>
+<p>新建虚拟环境</p>
+<p>必须要有python的版本，否则pip之类的都用不了</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>conda create -n clipcap python<span style="color:#f92672">=</span>3.8
+</span></span></code></pre></div><p>启动环境</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>conda activate clipcap
+</span></span></code></pre></div><h1 id="二运行github文件">二、运行github文件</h1>
+<p>参考<a href="https://github.com/yangjianxin1/ClipCap-Chinese/tree/master">Github链接</a>，下载zip文件，然后上传到MobaXterm，参考<a href="http://t.csdnimg.cn/kkTzg">MoaXterm博文</a></p>
+<p>改变路径<code>cd &lt;路径&gt;</code>，激活环境<code>conda activate clipcap</code></p>
+<p>运行第一条命令<code>pip install -r requirements.txt</code>，等待</p>
+<p>运行<code>python process_flickr.py</code>，这时候有错误提示，显示缺少<strong>ViT-B-32.pt</strong></p>
+<p>所以，<a href="https://openaipublic.azureedge.net/clip/models/40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af/ViT-B-32.pt">下载ViT-B-32.pt</a></p>
+<p>再次运行<code>python process_flickr.py</code>，发现还少东西，dataset没有数据集flickr30k</p>
+<p>flickr30k<a href="https://shannon.cs.illinois.edu/DenotationGraph/">下载官网</a>，填好表格，会给你的邮箱发送下载链接。上传flickr30k-images.tar和flickr30k.tar.gz。</p>
+<p>解压flickr30k文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>tar -xvf flickr30k-images.tar
+</span></span></code></pre></div><p>运行<code>bash scripts/train_finetune_gpt2.sh</code>，会报错，原因在于pre_model/gpt2的文件夹里面少pytorch_model.bin文件
+PS:pytorch_model.bin是PyTorch模型的二进制文件，包含了训练好的模型权重参数。少GPT2的模型权重参数，当然没法继续。下载，上传到文件夹。再次运行。此时就可以成功训练了。</p>
+<h1 id="三clipcap代码阅读">三、clipcap代码阅读</h1>
+<p>训练训练MLP+GPT2 tuning实在是太慢了&hellip;趁这段时间分析一下代码，重点看一下train.py和predict.py</p>
+<h2 id="关于导入python的库和模块">关于导入python的库和模块</h2>
+<p>clipcap是pytorch框架下的，然后从pytorch中导入处理数据的类：Dataset和DataLoader，以及用来可视化训练过程的Tensorboard。</p>
+<p>关于Bert模型的配置和分词器（token）是从Huggingface的transformer库中导入的。</p>
+<p>&rsquo; tqdm &lsquo;库用来显示进度条，&rsquo; loguru &lsquo;库中的&rsquo; logger &lsquo;用来日志记录，&rsquo; argparse &lsquo;模块用来解析命令，&rsquo; os &lsquo;模块用来与计算机操作系统交互，&rsquo; join &lsquo;函数用来连接文件路径，&rsquo; functional &lsquo;模块包含不可学习参数的函数，如激活函数和损失函数。</p>
+<h2 id="导入模块">导入模块</h2>
+<p><code>from enum import Enum</code>: 导入 Python 的 Enum 类，用于创建枚举类型。</p>
+<p><code>from transformers import GPT2Tokenizer, GPT2LMHeadModel, AdamW, get_linear_schedule_with_warmup, BertModel, BertConfig, GPT2Config</code>: 导入 Hugging Face 的 Transformers 库中的相关类和函数，包括 GPT-2 模型和 tokenizer，AdamW 优化器，学习率调度器等。</p>
+<p><code>from transformers import TextGenerationPipeline, AutoTokenizer, AutoModelWithLMHead</code>: 导入 Hugging Face Transformers 库中的文本生成管道、AutoTokenizer 和 AutoModelWithLMHead 类。</p>
+<p><code>from transformers import AutoConfig, AutoModelWithLMHead</code>: 导入 Hugging Face Transformers 库中的自动配置和自动模型。</p>
+<p><code>import pickle</code>: 导入 Python 的 pickle 模块，用于序列化和反序列化对象。</p>
+<p><code>import sys</code>: 导入 sys 模块，提供对 Python 解释器的访问。</p>
+<p><code>import argparse</code>: 导入 argparse 模块，用于解析命令行参数。</p>
+<p><code>from typing import Tuple, Optional, Union</code>: 导入 Python 的 typing 模块，用于类型提示。</p>
+<h1 id="四可视化">四、可视化</h1>
+<p>执行训练MLP+GPT2 tuning指令之后，想在tensorboard上查看一下，执行指令<code>tensorboard --logdir ./output </code></p>
+<p>网站打不开&hellip;转战到MobaXterm直接配置，
+配置成功后，打开网页：<code>http://127.0.0.1:16006/#timeseries</code></p>
+</section>
+
+  <footer class="mt-12 flex flex-wrap"><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="https://yatingliu2019.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0"
+      >深度学习</a
+    ><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="https://yatingliu2019.github.io/tags/pytorch%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95"
+      >pytorch学习记录</a
+    ></footer><nav
+    class="mt-24 flex overflow-hidden rounded-xl bg-black/[3%] text-lg leading-[1.2]! *:flex *:w-1/2 *:items-center *:p-5 *:font-medium *:no-underline dark:bg-white/[8%] [&>*:hover]:bg-black/[2%] dark:[&>*:hover]:bg-white/[3%]"
+  ><a class="ltr:pr-3 rtl:pl-3" href="https://yatingliu2019.github.io/post/placeholder-text/"
+      ><span class="ltr:mr-1.5 rtl:ml-1.5">←</span><span>Placeholder Text</span></a
+    ><a
+      class="justify-end pl-3 ltr:ml-auto rtl:mr-auto"
+      href="https://yatingliu2019.github.io/post/test-again-today/"
+      ><span>test-again-today</span><span class="ltr:ml-1.5 rtl:mr-1.5">→</span></a
+    ></nav></article></main><footer
+  class="mx-auto flex h-[4.5rem] max-w-(--w) items-center px-8 text-xs tracking-wider uppercase opacity-60"
+>
+  <div class="mr-auto">© 2025, lyt.so</div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >powered by hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >hugo-paper</a
+  >
+</footer>
+</body>
+</html>
