@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Matlab on Liuyating&#39;s Blog</title>
+    <link>https://yatingliu2019.github.io/tags/matlab/</link>
+    <description>Recent content in Matlab on Liuyating&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>© 2025, lyt.so</copyright>
+    <lastBuildDate>Thu, 31 Mar 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://yatingliu2019.github.io/tags/matlab/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Matlab | save无法写入文件 权限被拒绝</title>
+      <link>https://yatingliu2019.github.io/post/matlab_error_resolution_notes/</link>
+      <pubDate>Thu, 31 Mar 2022 00:00:00 +0000</pubDate>
+      <guid>https://yatingliu2019.github.io/post/matlab_error_resolution_notes/</guid>
+      <description>&lt;h2 id=&#34;方法&#34;&gt;方法① &lt;/h2&gt;&#xA;&lt;p&gt;！更改工作区地址为当前.m文件路径。&lt;img src=&#34;https://yatingliu2019.github.io/images/matlabimg.png&#34; alt=&#34;name&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;方法-1&#34;&gt;方法②&lt;/h2&gt;&#xA;&lt;p&gt;确认程序文件名没有特殊符号。&lt;/p&gt;&#xA;&lt;h2 id=&#34;方法-2&#34;&gt;方法③&lt;/h2&gt;&#xA;&lt;p&gt;显示说没有管理员权限,无法保存：&lt;/p&gt;&#xA;&lt;p&gt;运行matlab时不要直接双击打开,先点右键选择以管理员方式打开&lt;/p&gt;&#xA;&lt;p&gt;​&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

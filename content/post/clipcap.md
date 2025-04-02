@@ -9,7 +9,7 @@ tags = [
 ]
 +++
  
-#  一、配置学习
+##  一、配置学习
 新建虚拟环境 
 
 必须要有python的版本，否则pip之类的都用不了
@@ -23,7 +23,7 @@ conda activate clipcap
 ```
 
 
-# 二、运行github文件
+## 二、运行github文件
 参考[Github链接](https://github.com/yangjianxin1/ClipCap-Chinese/tree/master)，下载zip文件，然后上传到MobaXterm，参考[MoaXterm博文](http://t.csdnimg.cn/kkTzg)
 
 改变路径`cd <路径>`，激活环境`conda activate clipcap`
@@ -47,11 +47,11 @@ tar -xvf flickr30k-images.tar
 PS:pytorch_model.bin是PyTorch模型的二进制文件，包含了训练好的模型权重参数。少GPT2的模型权重参数，当然没法继续。下载，上传到文件夹。再次运行。此时就可以成功训练了。
 
 
-# 三、clipcap代码阅读
+## 三、clipcap代码阅读
 
 训练训练MLP+GPT2 tuning实在是太慢了...趁这段时间分析一下代码，重点看一下train.py和predict.py
 
-## 关于导入python的库和模块
+### 关于导入python的库和模块
 
 clipcap是pytorch框架下的，然后从pytorch中导入处理数据的类：Dataset和DataLoader，以及用来可视化训练过程的Tensorboard。
 
@@ -60,7 +60,7 @@ clipcap是pytorch框架下的，然后从pytorch中导入处理数据的类：Da
 ' tqdm '库用来显示进度条，' loguru '库中的' logger '用来日志记录，' argparse '模块用来解析命令，' os '模块用来与计算机操作系统交互，' join '函数用来连接文件路径，' functional '模块包含不可学习参数的函数，如激活函数和损失函数。
 
 
-## 导入模块
+### 导入模块
 
 `from enum import Enum`: 导入 Python 的 Enum 类，用于创建枚举类型。
 
@@ -79,7 +79,7 @@ clipcap是pytorch框架下的，然后从pytorch中导入处理数据的类：Da
 `from typing import Tuple, Optional, Union`: 导入 Python 的 typing 模块，用于类型提示。
 
 
-# 四、可视化
+## 四、可视化
 执行训练MLP+GPT2 tuning指令之后，想在tensorboard上查看一下，执行指令`tensorboard --logdir ./output `
 
 网站打不开...转战到MobaXterm直接配置，

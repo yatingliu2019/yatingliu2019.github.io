@@ -207,13 +207,13 @@ from transformers import GPT2Tokenizer, GPT2LMHeadModel, AdamW, get_linear_sched
     <h1 class="my-0! pb-2.5">Clipcap学习笔记</h1><div class="text-xs antialiased opacity-60"><time>Dec 26, 2023</time><span class="mx-1">&middot;</span>
       <span>lyt</span></div></header>
 
-  <section><h1 id="一配置学习">一、配置学习</h1>
+  <section><h2 id="一配置学习">一、配置学习</h2>
 <p>新建虚拟环境</p>
 <p>必须要有python的版本，否则pip之类的都用不了</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>conda create -n clipcap python<span style="color:#f92672">=</span>3.8
 </span></span></code></pre></div><p>启动环境</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>conda activate clipcap
-</span></span></code></pre></div><h1 id="二运行github文件">二、运行github文件</h1>
+</span></span></code></pre></div><h2 id="二运行github文件">二、运行github文件</h2>
 <p>参考<a href="https://github.com/yangjianxin1/ClipCap-Chinese/tree/master">Github链接</a>，下载zip文件，然后上传到MobaXterm，参考<a href="http://t.csdnimg.cn/kkTzg">MoaXterm博文</a></p>
 <p>改变路径<code>cd &lt;路径&gt;</code>，激活环境<code>conda activate clipcap</code></p>
 <p>运行第一条命令<code>pip install -r requirements.txt</code>，等待</p>
@@ -225,13 +225,13 @@ from transformers import GPT2Tokenizer, GPT2LMHeadModel, AdamW, get_linear_sched
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>tar -xvf flickr30k-images.tar
 </span></span></code></pre></div><p>运行<code>bash scripts/train_finetune_gpt2.sh</code>，会报错，原因在于pre_model/gpt2的文件夹里面少pytorch_model.bin文件
 PS:pytorch_model.bin是PyTorch模型的二进制文件，包含了训练好的模型权重参数。少GPT2的模型权重参数，当然没法继续。下载，上传到文件夹。再次运行。此时就可以成功训练了。</p>
-<h1 id="三clipcap代码阅读">三、clipcap代码阅读</h1>
+<h2 id="三clipcap代码阅读">三、clipcap代码阅读</h2>
 <p>训练训练MLP+GPT2 tuning实在是太慢了&hellip;趁这段时间分析一下代码，重点看一下train.py和predict.py</p>
-<h2 id="关于导入python的库和模块">关于导入python的库和模块</h2>
+<h3 id="关于导入python的库和模块">关于导入python的库和模块</h3>
 <p>clipcap是pytorch框架下的，然后从pytorch中导入处理数据的类：Dataset和DataLoader，以及用来可视化训练过程的Tensorboard。</p>
 <p>关于Bert模型的配置和分词器（token）是从Huggingface的transformer库中导入的。</p>
 <p>&rsquo; tqdm &lsquo;库用来显示进度条，&rsquo; loguru &lsquo;库中的&rsquo; logger &lsquo;用来日志记录，&rsquo; argparse &lsquo;模块用来解析命令，&rsquo; os &lsquo;模块用来与计算机操作系统交互，&rsquo; join &lsquo;函数用来连接文件路径，&rsquo; functional &lsquo;模块包含不可学习参数的函数，如激活函数和损失函数。</p>
-<h2 id="导入模块">导入模块</h2>
+<h3 id="导入模块">导入模块</h3>
 <p><code>from enum import Enum</code>: 导入 Python 的 Enum 类，用于创建枚举类型。</p>
 <p><code>from transformers import GPT2Tokenizer, GPT2LMHeadModel, AdamW, get_linear_schedule_with_warmup, BertModel, BertConfig, GPT2Config</code>: 导入 Hugging Face 的 Transformers 库中的相关类和函数，包括 GPT-2 模型和 tokenizer，AdamW 优化器，学习率调度器等。</p>
 <p><code>from transformers import TextGenerationPipeline, AutoTokenizer, AutoModelWithLMHead</code>: 导入 Hugging Face Transformers 库中的文本生成管道、AutoTokenizer 和 AutoModelWithLMHead 类。</p>
@@ -240,7 +240,7 @@ PS:pytorch_model.bin是PyTorch模型的二进制文件，包含了训练好的�
 <p><code>import sys</code>: 导入 sys 模块，提供对 Python 解释器的访问。</p>
 <p><code>import argparse</code>: 导入 argparse 模块，用于解析命令行参数。</p>
 <p><code>from typing import Tuple, Optional, Union</code>: 导入 Python 的 typing 模块，用于类型提示。</p>
-<h1 id="四可视化">四、可视化</h1>
+<h2 id="四可视化">四、可视化</h2>
 <p>执行训练MLP+GPT2 tuning指令之后，想在tensorboard上查看一下，执行指令<code>tensorboard --logdir ./output </code></p>
 <p>网站打不开&hellip;转战到MobaXterm直接配置，
 配置成功后，打开网页：<code>http://127.0.0.1:16006/#timeseries</code></p>
@@ -256,8 +256,8 @@ PS:pytorch_model.bin是PyTorch模型的二进制文件，包含了训练好的�
       >clipcap学习记录</a
     ></footer><nav
     class="mt-24 flex overflow-hidden rounded-xl bg-black/[3%] text-lg leading-[1.2]! *:flex *:w-1/2 *:items-center *:p-5 *:font-medium *:no-underline dark:bg-white/[8%] [&>*:hover]:bg-black/[2%] dark:[&>*:hover]:bg-white/[3%]"
-  ><a class="ltr:pr-3 rtl:pl-3" href="https://yatingliu2019.github.io/post/linuxcommand_learning_record/"
-      ><span class="ltr:mr-1.5 rtl:ml-1.5">←</span><span>常见60个Linux指令</span></a
+  ><a class="ltr:pr-3 rtl:pl-3" href="https://yatingliu2019.github.io/post/sql_learning_record/"
+      ><span class="ltr:mr-1.5 rtl:ml-1.5">←</span><span>SQL学习笔记</span></a
     ><a
       class="justify-end pl-3 ltr:ml-auto rtl:mr-auto"
       href="https://yatingliu2019.github.io/post/pytorch_learning_record/"

@@ -31,6 +31,20 @@
       <description></description>
     </item>
     <item>
+      <title>Mysql</title>
+      <link>https://yatingliu2019.github.io/tags/mysql/</link>
+      <pubDate>Tue, 26 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://yatingliu2019.github.io/tags/mysql/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Sql</title>
+      <link>https://yatingliu2019.github.io/tags/sql/</link>
+      <pubDate>Tue, 26 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://yatingliu2019.github.io/tags/sql/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>深度学习</title>
       <link>https://yatingliu2019.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Tue, 26 Dec 2023 00:00:00 +0000</pubDate>
@@ -45,38 +59,24 @@
       <description></description>
     </item>
     <item>
-      <title>Css</title>
-      <link>https://yatingliu2019.github.io/tags/css/</link>
-      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>https://yatingliu2019.github.io/tags/css/</guid>
+      <title>Matlab</title>
+      <link>https://yatingliu2019.github.io/tags/matlab/</link>
+      <pubDate>Thu, 31 Mar 2022 00:00:00 +0000</pubDate>
+      <guid>https://yatingliu2019.github.io/tags/matlab/</guid>
       <description></description>
     </item>
     <item>
-      <title>Html</title>
-      <link>https://yatingliu2019.github.io/tags/html/</link>
-      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>https://yatingliu2019.github.io/tags/html/</guid>
+      <title>错误解决</title>
+      <link>https://yatingliu2019.github.io/tags/%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3/</link>
+      <pubDate>Thu, 31 Mar 2022 00:00:00 +0000</pubDate>
+      <guid>https://yatingliu2019.github.io/tags/%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3/</guid>
       <description></description>
     </item>
     <item>
-      <title>Markdown</title>
-      <link>https://yatingliu2019.github.io/tags/markdown/</link>
-      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>https://yatingliu2019.github.io/tags/markdown/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Privacy</title>
-      <link>https://yatingliu2019.github.io/tags/privacy/</link>
-      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>https://yatingliu2019.github.io/tags/privacy/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Shortcodes</title>
-      <link>https://yatingliu2019.github.io/tags/shortcodes/</link>
-      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>https://yatingliu2019.github.io/tags/shortcodes/</guid>
+      <title>Python</title>
+      <link>https://yatingliu2019.github.io/tags/python/</link>
+      <pubDate>Wed, 31 Mar 2021 00:00:00 +0000</pubDate>
+      <guid>https://yatingliu2019.github.io/tags/python/</guid>
       <description></description>
     </item>
   </channel>

@@ -1,0 +1,515 @@
+<!doctype html>
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg:#faf8f1"
+  lang="en"
+  dir="ltr"
+><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>SQL学习笔记-Liuyating&#39;s Blog</title>
+
+  
+  <meta name="theme-color" />
+
+  <meta name="description" content="
+课程链接：
+【数据库】SQL 3小时快速入门 #数据库教程 #SQL教程 #MySQL教程 #database#Python连接数据库
+一、SQL
+1.资料库管理系统（Database Management System，简称DBMS）
+是整理资料的软件。其主要功能包括数据的存储、检索、更新和删除，以及对数据进行安全性、完整性和一致性的管理。以下是资料库管理系统的一些重要特征和功能：
+a. 数据定义语言（Data Definition Language，DDL）：用于定义数据库中的数据结构，包括表、字段、索引等。
+b. 数据操作语言（Data Manipulation Language，DML）：用于对数据库中的数据进行增加、删除、修改和查询等操作。
+c. 数据库查询语言（Database Query Language，如SQL）：用于向数据库发出查询请求，以检索所需的数据。
+d. 数据库事务管理：确保数据库操作的原子性、一致性、隔离性和持久性，以支持并发访问和数据的完整性。
+e. 数据库安全性管理：包括用户认证、授权和权限管理，以确保只有授权用户可以访问和操作数据库。
+f. 数据备份与恢复：提供定期备份数据库的功能，并能够在需要时将数据库恢复到先前的状态。
+g. 数据库性能优化：通过索引、查询优化、分区等技术提高数据库的性能和效率。
+h. 数据库监控与管理：监控数据库的运行状态、性能指标和资源利用情况，并进行必要的管理和调整。
+2.SQL（Structured Query Language，结构化查询语言）
+是一种用于管理关系数据库系统的标准化语言。它允许用户定义、操作和管理数据库中的数据，以及执行各种数据库操作，如查询、插入、更新和删除数据等。具有以下几个主要方面的功能：
+a. 数据查询（Query）：SQL允许用户通过使用SELECT语句从数据库中检索数据。SELECT语句可以根据用户的需求从一个或多个表中选择特定的列，并根据特定的条件过滤所需的行。
+b. 数据操作（Manipulation）：SQL包括INSERT、UPDATE和DELETE语句，用于向数据库中添加、更新或删除数据。这些语句使用户能够对数据库中的数据进行修改，以保持数据的最新状态。
+c. 数据定义（Definition）：SQL提供了一组用于定义数据库结构的语句，如CREATE TABLE、ALTER TABLE和DROP TABLE等。这些语句允许用户创建新表、修改现有表的结构，或删除不再需要的表。
+d. 数据控制（Control）：SQL包括用于控制对数据库对象的访问权限的语句，如GRANT和REVOKE。这些语句允许数据库管理员管理用户对数据库的访问权限，以确保数据的安全性和完整性。
+e. 事务控制（Transaction Control）：SQL支持事务处理，通过BEGIN TRANSACTION、COMMIT和ROLLBACK等语句，允许用户在数据库中执行一系列操作，并将它们作为一个原子单元进行提交或回滚。
+二、基础
+1.安装：
+环境：Windows系统，官网链接: MySQL Community Downloads
+2.table and keys：
+主键和外键
+3.创建资料库：
+关于database：
+-- 创建 指定数据库
+CREATE DATABASE `sq_tutroial`;
+-- 显示 所有的数据库
+SHOW DATABASES;
+-- 丢掉 指定数据库
+DROP DATABASE `sq_tutroial`;
+-- 使用 指定数据库
+USE `sq_tutroial`;
+关于table：" />
+  <meta name="author" content="lyt" /><link rel="preload stylesheet" as="style" href="https://yatingliu2019.github.io/main.min.css" />
+
+  
+  <link rel="preload" as="image" href="https://yatingliu2019.github.io/theme.png" />
+
+  <link rel="preload" as="image" href="https://yatingliu2019.github.io/images/p1.jpg" />
+
+  <link rel="preload" as="image" href="https://yatingliu2019.github.io/github.svg" /><link rel="preload" as="image" href="https://yatingliu2019.github.io/mastodon.svg" />
+
+  <script
+    defer
+    src="https://yatingliu2019.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+
+  
+  <link
+    rel="icon"
+    href="https://yatingliu2019.github.io/favicon.ico"
+  />
+  <link
+    rel="apple-touch-icon"
+    href="https://yatingliu2019.github.io/apple-touch-icon.png"
+  />
+
+  <meta name="generator" content="Hugo 0.145.0">
+  <meta itemprop="name" content="SQL学习笔记">
+  <meta itemprop="description" content="A learning record of sqwl">
+  <meta itemprop="datePublished" content="2023-12-26T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2023-12-26T00:00:00+00:00">
+  <meta itemprop="wordCount" content="912">
+  <meta itemprop="keywords" content="Mysql,Sql"><meta property="og:url" content="https://yatingliu2019.github.io/post/sql_learning_record/">
+  <meta property="og:site_name" content="Liuyating&#39;s Blog">
+  <meta property="og:title" content="SQL学习笔记">
+  <meta property="og:description" content="A learning record of sqwl">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2023-12-26T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-12-26T00:00:00+00:00">
+    <meta property="article:tag" content="Mysql">
+    <meta property="article:tag" content="Sql">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="SQL学习笔记">
+  <meta name="twitter:description" content="A learning record of sqwl">
+
+  <link rel="canonical" href="https://yatingliu2019.github.io/post/sql_learning_record/" />
+</head>
+<body
+    class="bg-(--bg) text-black antialiased duration-200 ease-out [-webkit-tap-highlight-color:transparent] dark:text-white"
+  ><header
+  class="mx-auto flex h-[4.5rem] max-w-(--w) px-8 whitespace-nowrap lg:justify-center"
+>
+  <div class="relative z-50 flex items-center ltr:mr-auto rtl:ml-auto">
+    <a
+      class="-translate-y-[1px] text-2xl font-medium"
+      href="https://yatingliu2019.github.io/"
+      >Liuyating&#39;s Blog</a
+    >
+    <div
+      class="btn-dark text-[0px] ltr:ml-4 rtl:mr-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden ltr:-mr-8 rtl:-ml-8"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full flex-col justify-center bg-(--bg) pb-16 duration-200 select-none lg:static lg:h-auto lg:flex-row lg:bg-transparent! lg:pb-0 lg:transition-none"
+  ><nav
+      class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-10 rtl:space-x-reverse"
+    ><a
+        class="block text-center text-xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/about/"
+        >教育及科研经历</a
+      ><a
+        class="block text-center text-xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/contact/"
+        >联系方式</a
+      ></nav><nav
+      class="mt-12 flex justify-center space-x-10 lg:mt-0 lg:items-center ltr:lg:ml-14 rtl:space-x-reverse rtl:lg:mr-14 dark:invert"
+    >
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/yatingliu2019"
+        target="_blank"
+        rel="me"
+      >github</a>
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./mastodon.svg)"
+        href="https://blog.csdn.net/qq_51870267?spm=1011.2415.3001.5111"
+        target="_blank"
+        rel="me"
+      >mastodon</a>
+    </nav>
+  </div>
+</header>
+<main
+      class="prose prose-neutral dark:prose-invert relative mx-auto min-h-[calc(100vh-9rem)] max-w-(--w) px-8 pt-14 pb-16"
+    ><article>
+  <header class="mb-14">
+    <h1 class="my-0! pb-2.5">SQL学习笔记</h1><div class="text-xs antialiased opacity-60"><time>Dec 26, 2023</time><span class="mx-1">&middot;</span>
+      <span>lyt</span></div></header>
+
+  <section><blockquote>
+<p>课程链接：
+<a href="https://www.bilibili.com/video/BV1PT4y1e7UU/?share_source=copy_web&amp;vd_source=e1dd89dfeb5a2b320cd06a8ff9f19dc5">【数据库】SQL 3小时快速入门 #数据库教程 #SQL教程 #MySQL教程 #database#Python连接数据库</a></p></blockquote>
+<h2 id="一sql">一、SQL</h2>
+<h3 id="1资料库管理系统database-management-system简称dbms">1.<strong>资料库管理系统</strong>（Database Management System，简称DBMS）</h3>
+<p>是整理资料的软件。其主要功能包括数据的存储、检索、更新和删除，以及对数据进行安全性、完整性和一致性的管理。以下是资料库管理系统的一些重要特征和功能：</p>
+<p>a. 数据定义语言（Data Definition Language，DDL）：用于定义数据库中的数据结构，包括表、字段、索引等。</p>
+<p>b. 数据操作语言（Data Manipulation Language，DML）：用于对数据库中的数据进行增加、删除、修改和查询等操作。</p>
+<p>c. 数据库查询语言（Database Query Language，如SQL）：用于向数据库发出查询请求，以检索所需的数据。</p>
+<p>d. 数据库事务管理：确保数据库操作的原子性、一致性、隔离性和持久性，以支持并发访问和数据的完整性。</p>
+<p>e. 数据库安全性管理：包括用户认证、授权和权限管理，以确保只有授权用户可以访问和操作数据库。</p>
+<p>f. 数据备份与恢复：提供定期备份数据库的功能，并能够在需要时将数据库恢复到先前的状态。</p>
+<p>g. 数据库性能优化：通过索引、查询优化、分区等技术提高数据库的性能和效率。</p>
+<p>h. 数据库监控与管理：监控数据库的运行状态、性能指标和资源利用情况，并进行必要的管理和调整。</p>
+<h3 id="2sqlstructured-query-language结构化查询语言">2.<strong>SQL</strong>（Structured Query Language，结构化查询语言）</h3>
+<p>是一种用于管理关系数据库系统的标准化语言。它允许用户定义、操作和管理数据库中的数据，以及执行各种数据库操作，如查询、插入、更新和删除数据等。具有以下几个主要方面的功能：</p>
+<p>a. 数据查询（Query）：SQL允许用户通过使用SELECT语句从数据库中检索数据。SELECT语句可以根据用户的需求从一个或多个表中选择特定的列，并根据特定的条件过滤所需的行。</p>
+<p>b. 数据操作（Manipulation）：SQL包括INSERT、UPDATE和DELETE语句，用于向数据库中添加、更新或删除数据。这些语句使用户能够对数据库中的数据进行修改，以保持数据的最新状态。</p>
+<p>c. 数据定义（Definition）：SQL提供了一组用于定义数据库结构的语句，如CREATE TABLE、ALTER TABLE和DROP TABLE等。这些语句允许用户创建新表、修改现有表的结构，或删除不再需要的表。</p>
+<p>d. 数据控制（Control）：SQL包括用于控制对数据库对象的访问权限的语句，如GRANT和REVOKE。这些语句允许数据库管理员管理用户对数据库的访问权限，以确保数据的安全性和完整性。</p>
+<p>e. 事务控制（Transaction Control）：SQL支持事务处理，通过BEGIN TRANSACTION、COMMIT和ROLLBACK等语句，允许用户在数据库中执行一系列操作，并将它们作为一个原子单元进行提交或回滚。</p>
+<h2 id="二基础">二、基础</h2>
+<h3 id="1安装">1.安装：</h3>
+<p>环境：Windows系统，官网链接: <a href="https://dev.mysql.com/downloads/windows/installer/8.0.html%E9%93%BE%E6%8E%A5">MySQL Community Downloads</a></p>
+<h3 id="2table-and-keys">2.table and keys：</h3>
+<p>主键和外键</p>
+<h3 id="3创建资料库">3.创建资料库：</h3>
+<p>关于database：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 创建 指定数据库
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">DATABASE</span> <span style="color:#f92672">`</span>sq_tutroial<span style="color:#f92672">`</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 显示 所有的数据库
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SHOW</span> DATABASES;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 丢掉 指定数据库
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">DATABASE</span> <span style="color:#f92672">`</span>sq_tutroial<span style="color:#f92672">`</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 使用 指定数据库
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>USE <span style="color:#f92672">`</span>sq_tutroial<span style="color:#f92672">`</span>;
+</span></span></code></pre></div><p>关于table：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 创建 指定表格
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#f92672">`</span>student<span style="color:#f92672">`</span>(
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">`</span>student_id<span style="color:#f92672">`</span> INT <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> AUTO_INCREMENT,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">`</span>name<span style="color:#f92672">`</span> VARCHAR(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">`</span>major<span style="color:#f92672">`</span> VARCHAR(<span style="color:#ae81ff">20</span>) <span style="color:#66d9ef">UNIQUE</span>
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 描述 指定表格的结构
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">DESCRIBE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#f92672">`</span>student<span style="color:#f92672">`</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 删除 指定表格
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#f92672">`</span>student<span style="color:#f92672">`</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 返回 指定表格所有数据
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>student<span style="color:#f92672">`</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 修改 指定表格数据 添加
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#f92672">`</span>student<span style="color:#f92672">`</span> <span style="color:#66d9ef">ADD</span> gpa DECIMAL(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>);
+</span></span></code></pre></div><p>关于数据格式：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 格式
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>INT				<span style="color:#75715e">-- 整数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>DECIMAL(m,n)	<span style="color:#75715e">-- 有小数点的数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>VARCHAR(n)		<span style="color:#75715e">-- 字串
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>BLOB			<span style="color:#75715e">-- （Binary Large Object）图片 影片 档案...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>DATE			<span style="color:#75715e">-- &#39;YYYY-MM-DD&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">TIMESTAMP</span>		<span style="color:#75715e">-- &#39;YYYY-MM-DD HH:MM:SS&#39;
+</span></span></span></code></pre></div><h2 id="三实例">三、实例</h2>
+<blockquote>
+<p>注意：先创建主体的 Employee 和 Branch 表格，再补上 Employee 的 branch_id的foreign key设定，∵有创建顺序，后者的主键是前者的外键</p></blockquote>
+<h3 id="1创建">1.创建</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 创建公司表格资料库
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">DATABASE</span> <span style="color:#f92672">`</span>sq_test<span style="color:#f92672">`</span>;
+</span></span><span style="display:flex;"><span>USE <span style="color:#f92672">`</span>sq_test<span style="color:#f92672">`</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SET</span> SQL_SAFE_UPDATES <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 创建 employee 和 branch 表格
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">`</span>emp_id<span style="color:#f92672">`</span> INT <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">`</span>name<span style="color:#f92672">`</span> VARCHAR(<span style="color:#ae81ff">20</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">`</span>birth_date<span style="color:#f92672">`</span> DATE,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">`</span>sex<span style="color:#f92672">`</span> VARCHAR(<span style="color:#ae81ff">1</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">`</span>salary<span style="color:#f92672">`</span> INT,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">`</span>branch_id<span style="color:#f92672">`</span> INT,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">`</span>sup_id<span style="color:#f92672">`</span> INT
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#f92672">`</span>branch<span style="color:#f92672">`</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">`</span>branch_id<span style="color:#f92672">`</span> INT <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">`</span>branch_name<span style="color:#f92672">`</span> VARCHAR(<span style="color:#ae81ff">20</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">`</span>manager_id<span style="color:#f92672">`</span> INT,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">FOREIGN</span> <span style="color:#66d9ef">KEY</span> (<span style="color:#f92672">`</span>manager_id<span style="color:#f92672">`</span>) <span style="color:#66d9ef">REFERENCES</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span>(<span style="color:#f92672">`</span>emp_id<span style="color:#f92672">`</span>) <span style="color:#66d9ef">ON</span> <span style="color:#66d9ef">DELETE</span> <span style="color:#66d9ef">SET</span> <span style="color:#66d9ef">NULL</span>
+</span></span><span style="display:flex;"><span>    );
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 补上foreign key的设定
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ADD</span> <span style="color:#66d9ef">FOREIGN</span> <span style="color:#66d9ef">KEY</span>(<span style="color:#f92672">`</span>branch_id<span style="color:#f92672">`</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">REFERENCES</span> <span style="color:#f92672">`</span>branch<span style="color:#f92672">`</span>(<span style="color:#f92672">`</span>branch_id<span style="color:#f92672">`</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ON</span> <span style="color:#66d9ef">DELETE</span> <span style="color:#66d9ef">SET</span> <span style="color:#66d9ef">NULL</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ADD</span> <span style="color:#66d9ef">FOREIGN</span> <span style="color:#66d9ef">KEY</span>(<span style="color:#f92672">`</span>sup_id<span style="color:#f92672">`</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">REFERENCES</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span>(<span style="color:#f92672">`</span>emp_id<span style="color:#f92672">`</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ON</span> <span style="color:#66d9ef">DELETE</span> <span style="color:#66d9ef">SET</span> <span style="color:#66d9ef">NULL</span>;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 创建 client 和 works_with 表格
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#f92672">`</span>client<span style="color:#f92672">`</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">`</span>client_id<span style="color:#f92672">`</span> INT <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">`</span>client_name<span style="color:#f92672">`</span> VARCHAR(<span style="color:#ae81ff">20</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">`</span>phone<span style="color:#f92672">`</span> VARCHAR(<span style="color:#ae81ff">20</span>)
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#f92672">`</span>works_with<span style="color:#f92672">`</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">`</span>emp_id<span style="color:#f92672">`</span> INT,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">`</span>client_id<span style="color:#f92672">`</span> INT,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">`</span>total_sales<span style="color:#f92672">`</span> INT,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span>(<span style="color:#f92672">`</span>emp_id<span style="color:#f92672">`</span>, <span style="color:#f92672">`</span>client_id<span style="color:#f92672">`</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">FOREIGN</span> <span style="color:#66d9ef">KEY</span>(<span style="color:#f92672">`</span>emp_id<span style="color:#f92672">`</span>) <span style="color:#66d9ef">REFERENCES</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span>(<span style="color:#f92672">`</span>emp_id<span style="color:#f92672">`</span>) <span style="color:#66d9ef">ON</span> <span style="color:#66d9ef">DELETE</span> <span style="color:#66d9ef">CASCADE</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">FOREIGN</span> <span style="color:#66d9ef">KEY</span>(<span style="color:#f92672">`</span>client_id<span style="color:#f92672">`</span>) <span style="color:#66d9ef">REFERENCES</span> <span style="color:#f92672">`</span>client<span style="color:#f92672">`</span>(<span style="color:#f92672">`</span>client_id<span style="color:#f92672">`</span>) <span style="color:#66d9ef">ON</span> <span style="color:#66d9ef">DELETE</span> <span style="color:#66d9ef">CASCADE</span>
+</span></span><span style="display:flex;"><span>    );
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 增加部门资料
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>branch<span style="color:#f92672">`</span> <span style="color:#66d9ef">VALUES</span>(<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;研发&#39;</span>, <span style="color:#ae81ff">206</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>branch<span style="color:#f92672">`</span> <span style="color:#66d9ef">VALUES</span>(<span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;行政&#39;</span>, <span style="color:#ae81ff">207</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>branch<span style="color:#f92672">`</span> <span style="color:#66d9ef">VALUES</span>(<span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;咨询&#39;</span>, <span style="color:#ae81ff">208</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 增加员工资料
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span> <span style="color:#66d9ef">VALUES</span>(<span style="color:#ae81ff">206</span>, <span style="color:#e6db74">&#39;小黄&#39;</span>, <span style="color:#e6db74">&#39;1998-10-08&#39;</span>, <span style="color:#e6db74">&#39;F&#39;</span>, <span style="color:#ae81ff">50000</span>, <span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">NULL</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span> <span style="color:#66d9ef">VALUES</span>(<span style="color:#ae81ff">207</span>, <span style="color:#e6db74">&#39;小绿&#39;</span>, <span style="color:#e6db74">&#39;1985-09-16&#39;</span>, <span style="color:#e6db74">&#39;M&#39;</span>, <span style="color:#ae81ff">29000</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">206</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span> <span style="color:#66d9ef">VALUES</span>(<span style="color:#ae81ff">208</span>, <span style="color:#e6db74">&#39;小黑&#39;</span>, <span style="color:#e6db74">&#39;2000-12-19&#39;</span>, <span style="color:#e6db74">&#39;M&#39;</span>, <span style="color:#ae81ff">35000</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">206</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span> <span style="color:#66d9ef">VALUES</span>(<span style="color:#ae81ff">209</span>, <span style="color:#e6db74">&#39;小白&#39;</span>, <span style="color:#e6db74">&#39;1997-01-22&#39;</span>, <span style="color:#e6db74">&#39;F&#39;</span>, <span style="color:#ae81ff">39000</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">207</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span> <span style="color:#66d9ef">VALUES</span>(<span style="color:#ae81ff">210</span>, <span style="color:#e6db74">&#39;小蓝&#39;</span>, <span style="color:#e6db74">&#39;1925-11-10&#39;</span>, <span style="color:#e6db74">&#39;F&#39;</span>, <span style="color:#ae81ff">84000</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">207</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 增加客户资料
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>client<span style="color:#f92672">`</span> <span style="color:#66d9ef">VALUES</span>(<span style="color:#ae81ff">400</span>,<span style="color:#e6db74">&#39;阿狗&#39;</span>,<span style="color:#e6db74">&#39;254354335&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>client<span style="color:#f92672">`</span> <span style="color:#66d9ef">VALUES</span>(<span style="color:#ae81ff">401</span>,<span style="color:#e6db74">&#39;阿猫&#39;</span>,<span style="color:#e6db74">&#39;25633899&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>client<span style="color:#f92672">`</span> <span style="color:#66d9ef">VALUES</span>(<span style="color:#ae81ff">402</span>,<span style="color:#e6db74">&#39;旺来&#39;</span>,<span style="color:#e6db74">&#39;45354345&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>client<span style="color:#f92672">`</span> <span style="color:#66d9ef">VALUES</span>(<span style="color:#ae81ff">403</span>,<span style="color:#e6db74">&#39;露西&#39;</span>,<span style="color:#e6db74">&#39;54354365&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>client<span style="color:#f92672">`</span> <span style="color:#66d9ef">VALUES</span>(<span style="color:#ae81ff">404</span>,<span style="color:#e6db74">&#39;艾瑞克&#39;</span>,<span style="color:#e6db74">&#39;18783783&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 增加合作资料
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>works_with<span style="color:#f92672">`</span> <span style="color:#66d9ef">VALUES</span>(<span style="color:#ae81ff">206</span>,<span style="color:#ae81ff">400</span>,<span style="color:#e6db74">&#39;70000&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>works_with<span style="color:#f92672">`</span> <span style="color:#66d9ef">VALUES</span>(<span style="color:#ae81ff">207</span>,<span style="color:#ae81ff">401</span>,<span style="color:#e6db74">&#39;24000&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>works_with<span style="color:#f92672">`</span> <span style="color:#66d9ef">VALUES</span>(<span style="color:#ae81ff">208</span>,<span style="color:#ae81ff">400</span>,<span style="color:#e6db74">&#39;9800&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>works_with<span style="color:#f92672">`</span> <span style="color:#66d9ef">VALUES</span>(<span style="color:#ae81ff">208</span>,<span style="color:#ae81ff">403</span>,<span style="color:#e6db74">&#39;24000&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>works_with<span style="color:#f92672">`</span> <span style="color:#66d9ef">VALUES</span>(<span style="color:#ae81ff">210</span>,<span style="color:#ae81ff">404</span>,<span style="color:#e6db74">&#39;87940&#39;</span>);
+</span></span></code></pre></div><h3 id="2练习">2.练习：</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 1.取得所有员工的资料
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 2.取得所有客户的资料
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>client<span style="color:#f92672">`</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 3.按照薪水低到高取得员工资料
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span> <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> <span style="color:#f92672">`</span>salary<span style="color:#f92672">`</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 4.取得薪水前3高的员工的资料
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span> <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> <span style="color:#f92672">`</span>salary<span style="color:#f92672">`</span> <span style="color:#66d9ef">DESC</span> <span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">3</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 5.取得所有员工的名字
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span> <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> <span style="color:#f92672">`</span>name<span style="color:#f92672">`</span>;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- aggregate function 聚合函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- 1.取得员工人数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 2.取得所有出生于1970-01-01之后的女性员工人数 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> <span style="color:#f92672">`</span>birth_date<span style="color:#f92672">`</span> <span style="color:#f92672">&gt;</span> <span style="color:#e6db74">&#39;1970-01-01&#39;</span> <span style="color:#66d9ef">AND</span> <span style="color:#f92672">`</span>sex<span style="color:#f92672">`</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;F&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 3.取得所有员工的平均薪水 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">AVG</span>(<span style="color:#f92672">`</span>salary<span style="color:#f92672">`</span>) <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 4.取得所有员工薪水的总和 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">SUM</span>(<span style="color:#f92672">`</span>salary<span style="color:#f92672">`</span>) <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 5.取得薪水最高的员工 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">MAX</span>(<span style="color:#f92672">`</span>salary<span style="color:#f92672">`</span>) <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 6.取得薪水最低的员工
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">MIN</span>(<span style="color:#f92672">`</span>salary<span style="color:#f92672">`</span>) <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span>;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- wildcards 万用子元  % 代表多个子元， _ 代表一个子元
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- 1.取得电话号码尾数是355的客户
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>client<span style="color:#f92672">`</span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> <span style="color:#f92672">`</span>phone<span style="color:#f92672">`</span> <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#39;%335&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 取得电话号码开头是123的客户
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- SELECT * FROM `client` WHERE `phone` LIKE &#39;123%&#39;;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- 取得电话号码包含是123的客户
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- SELECT * FROM `client` WHERE `phone` LIKE &#39;%123%&#39;;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- 2.取得姓艾的客户
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>client<span style="color:#f92672">`</span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> <span style="color:#f92672">`</span>client_name<span style="color:#f92672">`</span> <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#39;艾%&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 3.取得生日在12月的员工
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> <span style="color:#f92672">`</span>birth_date<span style="color:#f92672">`</span> <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#39;_____12%&#39;</span>;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- union 联合查询 并集
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- 1.员工名字 union 客户名字 1+1 同属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">`</span>name<span style="color:#f92672">`</span> <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">UNION</span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">`</span>client_name<span style="color:#f92672">`</span> <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>client<span style="color:#f92672">`</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 2.员工id + 员工名字 union 客户id + 客户名字
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">`</span>emp_id<span style="color:#f92672">`</span> <span style="color:#66d9ef">AS</span> <span style="color:#f92672">`</span>total_id<span style="color:#f92672">`</span>, <span style="color:#f92672">`</span>name<span style="color:#f92672">`</span> <span style="color:#66d9ef">AS</span> <span style="color:#f92672">`</span>total_name<span style="color:#f92672">`</span> <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">UNION</span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">`</span>client_id<span style="color:#f92672">`</span>, <span style="color:#f92672">`</span>client_name<span style="color:#f92672">`</span> <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>client<span style="color:#f92672">`</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 3.员工薪水 union 销售金额
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">`</span>salary<span style="color:#f92672">`</span> <span style="color:#66d9ef">AS</span> <span style="color:#f92672">`</span>total_salary<span style="color:#f92672">`</span> <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">UNION</span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">`</span>total_sales<span style="color:#f92672">`</span> <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>works_with<span style="color:#f92672">`</span>;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- join 连接
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>branch<span style="color:#f92672">`</span> <span style="color:#66d9ef">VALUES</span>(<span style="color:#ae81ff">4</span>, <span style="color:#e6db74">&#39;偷懒&#39;</span>, <span style="color:#66d9ef">NULL</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 取得所有部门经理的名字
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span>.<span style="color:#f92672">`</span>emp_id<span style="color:#f92672">`</span>, <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span>.<span style="color:#f92672">`</span>name<span style="color:#f92672">`</span>, <span style="color:#f92672">`</span>branch<span style="color:#f92672">`</span>.<span style="color:#f92672">`</span>branch_name<span style="color:#f92672">`</span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span> <span style="color:#66d9ef">LEFT</span> <span style="color:#66d9ef">JOIN</span> <span style="color:#f92672">`</span>branch<span style="color:#f92672">`</span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ON</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span>.<span style="color:#f92672">`</span>emp_id<span style="color:#f92672">`</span> <span style="color:#f92672">=</span> <span style="color:#f92672">`</span>branch<span style="color:#f92672">`</span>.<span style="color:#f92672">`</span>manager_id<span style="color:#f92672">`</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 不论 on 的条件成立与否,左面的表格都会回传全部资料,只有条件成立右边的表格才会回传资料,其他则是NULL
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- SELECT `employee`.`emp_id`, `employee`.`name`, `branch`.`branch_name` 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- FROM `employee` RIGHT JOIN `branch` 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- ON `employee`.`emp_id` = `branch`.`manager_id`;
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- subquery 子查询
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- 1.找出研发部门的经理名字
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">`</span>name<span style="color:#f92672">`</span> <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span> <span style="color:#66d9ef">WHERE</span> <span style="color:#f92672">`</span>emp_id<span style="color:#f92672">`</span> <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">`</span>manager_id<span style="color:#f92672">`</span> <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>branch<span style="color:#f92672">`</span> <span style="color:#66d9ef">WHERE</span> <span style="color:#f92672">`</span>branch_name<span style="color:#f92672">`</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;研发&#39;</span>
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 2.找出对单一位客户销售金额超过50000的员工的名字
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">`</span>name<span style="color:#f92672">`</span> <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>employee<span style="color:#f92672">`</span> <span style="color:#66d9ef">WHERE</span> <span style="color:#f92672">`</span>emp_id<span style="color:#f92672">`</span> <span style="color:#66d9ef">IN</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">`</span>emp_id<span style="color:#f92672">`</span> <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">`</span>works_with<span style="color:#f92672">`</span> <span style="color:#66d9ef">WHERE</span> <span style="color:#f92672">`</span>total_sales<span style="color:#f92672">`</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">50000</span> 
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 因为超过两笔 所以用 IN
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- on delete
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- 	ON DELETE  SET NULL
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- CREATE TABLE `branch` (
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- 	`branch_id` INT PRIMARY KEY,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">--     `branch_name` VARCHAR(20),
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">--     `manager_id` INT,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">--     FOREIGN KEY (`manager_id`) REFERENCES `employee`(`emp_id`) ON DELETE SET NULL
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">--     );
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- manager_id 对应的 emp_id 被删掉了 就把manager_id设为NULL
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">--	 ON DELETE CASCADE 级联删除
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- CREATE TABLE `works_with` (
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- 	`emp_id` INT,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">--     `client_id` INT,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">--     `total_sales` INT,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">--     PRIMARY KEY(`emp_id`, `client_id`),
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">--     FOREIGN KEY(`emp_id`) REFERENCES `employee`(`emp_id`) ON DELETE CASCADE,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">--     FOREIGN KEY(`client_id`) REFERENCES `client`(`client_id`) ON DELETE CASCADE
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">--     );
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- CASCADE针对左表关联列为首要键所在的列，且由于首要键列不得为NULL，所以采取CASCADE的清空本行的
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- 如果某一个值同时是primary key 或者 foreign key就不能用ON DELETE SET NULL
+</span></span></span></code></pre></div><h3 id="3sql连接python">3.sql连接python：</h3>
+<p>选用：Vscode，终端安装包：<code>pip install mysql-connector-python</code>，打开Vscode，</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> mysql.connector
+</span></span></code></pre></div><p>打开指定的连接</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>connection <span style="color:#f92672">=</span> mysql<span style="color:#f92672">.</span>connector<span style="color:#f92672">.</span>connect(
+</span></span><span style="display:flex;"><span>    host<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;localhost&#39;</span>,
+</span></span><span style="display:flex;"><span>    port<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;3306&#39;</span>,
+</span></span><span style="display:flex;"><span>    user<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;root&#39;</span>,
+</span></span><span style="display:flex;"><span>    password<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;密码&#39;</span>,
+</span></span><span style="display:flex;"><span>    database<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;指定的database名字&#39;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>cursor <span style="color:#f92672">=</span> connection<span style="color:#f92672">.</span>cursor()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 创建资料库</span>
+</span></span><span style="display:flex;"><span>cursor<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;CREATE DATABASE `指定的table名字`;&#34;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 取得所有资料库名称</span>
+</span></span><span style="display:flex;"><span>cursor<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;SHOW DATABASES;&#34;</span>)
+</span></span><span style="display:flex;"><span>records <span style="color:#f92672">=</span> cursor<span style="color:#f92672">.</span>fetchall()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> r <span style="color:#f92672">in</span> records:
+</span></span><span style="display:flex;"><span>    print(r)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 选择资料库</span>
+</span></span><span style="display:flex;"><span>cursor<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;USE `指定的资料库名字`;&#34;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 创建表格</span>
+</span></span><span style="display:flex;"><span>cursor<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;CREATE TABLE `指定的database名字`(指定的database名字 INT);&#34;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 查看`branch`表里面数据</span>
+</span></span><span style="display:flex;"><span>cursor<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;SELECT * FROM `branch`;&#34;</span>)
+</span></span><span style="display:flex;"><span>records <span style="color:#f92672">=</span> cursor<span style="color:#f92672">.</span>fetchall()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> r <span style="color:#f92672">in</span> records:
+</span></span><span style="display:flex;"><span>    print(r)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 新增 table 数据</span>
+</span></span><span style="display:flex;"><span>cursor<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;INSERT INTO `branch` VALUES(5, &#39;qq&#39;, NULL);&#34;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 修改 table 数据</span>
+</span></span><span style="display:flex;"><span>cursor<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;UPDATE `branch` SET `manager_id = NULL WHERE `branch_id` = 4;&#34;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 删除 table 数据</span>
+</span></span><span style="display:flex;"><span>cursor<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;DELETE FROM `branch` WHERE `branch_id` = 5;&#34;</span>)
+</span></span><span style="display:flex;"><span>cursor<span style="color:#f92672">.</span>close()
+</span></span><span style="display:flex;"><span>connection<span style="color:#f92672">.</span>commit() <span style="color:#75715e">#改动资料就要加上这一句</span>
+</span></span><span style="display:flex;"><span>connection<span style="color:#f92672">.</span>close()
+</span></span></code></pre></div></section>
+
+  <footer class="mt-12 flex flex-wrap"><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="https://yatingliu2019.github.io/tags/mysql"
+      >mysql</a
+    ><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="https://yatingliu2019.github.io/tags/sql"
+      >sql</a
+    ></footer><nav
+    class="mt-24 flex overflow-hidden rounded-xl bg-black/[3%] text-lg leading-[1.2]! *:flex *:w-1/2 *:items-center *:p-5 *:font-medium *:no-underline dark:bg-white/[8%] [&>*:hover]:bg-black/[2%] dark:[&>*:hover]:bg-white/[3%]"
+  ><a class="ltr:pr-3 rtl:pl-3" href="https://yatingliu2019.github.io/post/linuxcommand_learning_record/"
+      ><span class="ltr:mr-1.5 rtl:ml-1.5">←</span><span>常见60个Linux指令</span></a
+    ><a
+      class="justify-end pl-3 ltr:ml-auto rtl:mr-auto"
+      href="https://yatingliu2019.github.io/post/clipcap/"
+      ><span>Clipcap学习笔记</span><span class="ltr:ml-1.5 rtl:mr-1.5">→</span></a
+    ></nav></article></main><footer
+  class="mx-auto flex h-[4.5rem] max-w-(--w) items-center px-8 text-xs tracking-wider uppercase opacity-60"
+>
+  <div class="mr-auto">© 2025, lyt.so</div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >powered by hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >hugo-paper</a
+  >
+</footer>
+</body>
+</html>

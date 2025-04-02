@@ -20,17 +20,20 @@
   />
 
   
-  <title>Posts-Liuyating&#39;s Blog</title>
+  <title>Matlab | save无法写入文件 权限被拒绝-Liuyating&#39;s Blog</title>
 
   
   <meta name="theme-color" />
 
-  
-  <meta
-    name="description"
-    content="A personal blog"
-  />
-  <meta name="author" content="Liuyating" /><link rel="preload stylesheet" as="style" href="https://yatingliu2019.github.io/main.min.css" />
+  <meta name="description" content="方法① 
+！更改工作区地址为当前.m文件路径。
+方法②
+确认程序文件名没有特殊符号。
+方法③
+显示说没有管理员权限,无法保存：
+运行matlab时不要直接双击打开,先点右键选择以管理员方式打开
+​" />
+  <meta name="author" content="lyt" /><link rel="preload stylesheet" as="style" href="https://yatingliu2019.github.io/main.min.css" />
 
   
   <link rel="preload" as="image" href="https://yatingliu2019.github.io/theme.png" />
@@ -39,7 +42,11 @@
 
   <link rel="preload" as="image" href="https://yatingliu2019.github.io/github.svg" /><link rel="preload" as="image" href="https://yatingliu2019.github.io/mastodon.svg" />
 
-  
+  <script
+    defer
+    src="https://yatingliu2019.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
 
   
   <link
@@ -52,24 +59,28 @@
   />
 
   <meta name="generator" content="Hugo 0.145.0">
-  <meta itemprop="name" content="Posts">
-  <meta itemprop="datePublished" content="2024-11-30T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2024-11-30T00:00:00+00:00">
-  <meta itemprop="keywords" content="Index"><meta property="og:url" content="https://yatingliu2019.github.io/post/">
+  <meta itemprop="name" content="Matlab | save无法写入文件 权限被拒绝">
+  <meta itemprop="description" content="matlab error resolution notes">
+  <meta itemprop="datePublished" content="2022-03-31T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2022-03-31T00:00:00+00:00">
+  <meta itemprop="wordCount" content="8">
+  <meta itemprop="keywords" content="Matlab,错误解决"><meta property="og:url" content="https://yatingliu2019.github.io/post/matlab_error_resolution_notes/">
   <meta property="og:site_name" content="Liuyating&#39;s Blog">
-  <meta property="og:title" content="Posts">
+  <meta property="og:title" content="Matlab | save无法写入文件 权限被拒绝">
+  <meta property="og:description" content="matlab error resolution notes">
   <meta property="og:locale" content="en">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2022-03-31T00:00:00+00:00">
+    <meta property="article:modified_time" content="2022-03-31T00:00:00+00:00">
+    <meta property="article:tag" content="Matlab">
+    <meta property="article:tag" content="错误解决">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Posts">
-<link
-    rel="alternate"
-    type="application/rss&#43;xml"
-    href="https://yatingliu2019.github.io/post/index.xml"
-    title="Liuyating&#39;s Blog"
-  />
-  <link rel="canonical" href="https://yatingliu2019.github.io/post/" />
+  <meta name="twitter:title" content="Matlab | save无法写入文件 权限被拒绝">
+  <meta name="twitter:description" content="matlab error resolution notes">
+
+  <link rel="canonical" href="https://yatingliu2019.github.io/post/matlab_error_resolution_notes/" />
 </head>
 <body
     class="bg-(--bg) text-black antialiased duration-200 ease-out [-webkit-tap-highlight-color:transparent] dark:text-white"
@@ -172,40 +183,38 @@
 </header>
 <main
       class="prose prose-neutral dark:prose-invert relative mx-auto min-h-[calc(100vh-9rem)] max-w-(--w) px-8 pt-14 pb-16"
-    >
+    ><article>
+  <header class="mb-14">
+    <h1 class="my-0! pb-2.5">Matlab | save无法写入文件 权限被拒绝</h1><div class="text-xs antialiased opacity-60"><time>Mar 31, 2022</time><span class="mx-1">&middot;</span>
+      <span>lyt</span></div></header>
 
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0"><span class="mb-1 inline-block text-xs tracking-wider text-orange-500"
-    >Featured</span
-  ><h2 class="my-0!">常见60个Linux指令</h2>
-  <time class="text-xs antialiased opacity-60"
-    >Nov 30, 2024</time
-  >
-  <a class="absolute inset-0 text-[0px]" href="https://yatingliu2019.github.io/post/linuxcommand_learning_record/"
-    >常见60个Linux指令</a
-  >
+  <section><h2 id="方法">方法① </h2>
+<p>！更改工作区地址为当前.m文件路径。<img src="/images/matlabimg.png" alt="name"></p>
+<h2 id="方法-1">方法②</h2>
+<p>确认程序文件名没有特殊符号。</p>
+<h2 id="方法-2">方法③</h2>
+<p>显示说没有管理员权限,无法保存：</p>
+<p>运行matlab时不要直接双击打开,先点右键选择以管理员方式打开</p>
+<p>​</p>
 </section>
 
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0"><span class="mb-1 inline-block text-xs tracking-wider text-orange-500"
-    >Featured</span
-  ><h2 class="my-0!">SQL学习笔记</h2>
-  <time class="text-xs antialiased opacity-60"
-    >Dec 26, 2023</time
-  >
-  <a class="absolute inset-0 text-[0px]" href="https://yatingliu2019.github.io/post/sql_learning_record/"
-    >SQL学习笔记</a
-  >
-</section>
-
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0"><h2 class="my-0!">Clipcap学习笔记</h2>
-  <time class="text-xs antialiased opacity-60"
-    >Dec 26, 2023</time
-  >
-  <a class="absolute inset-0 text-[0px]" href="https://yatingliu2019.github.io/post/clipcap/"
-    >Clipcap学习笔记</a
-  >
-</section><nav class="mt-14 flex"><a class="btn not-prose ml-auto" href="/post/page/2/"
-    >Next Page→</a
-  ></nav></main><footer
+  <footer class="mt-12 flex flex-wrap"><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="https://yatingliu2019.github.io/tags/matlab"
+      >matlab</a
+    ><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="https://yatingliu2019.github.io/tags/%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3"
+      >错误解决</a
+    ></footer><nav
+    class="mt-24 flex overflow-hidden rounded-xl bg-black/[3%] text-lg leading-[1.2]! *:flex *:w-1/2 *:items-center *:p-5 *:font-medium *:no-underline dark:bg-white/[8%] [&>*:hover]:bg-black/[2%] dark:[&>*:hover]:bg-white/[3%]"
+  ><a class="ltr:pr-3 rtl:pl-3" href="https://yatingliu2019.github.io/post/pytorch_learning_record/"
+      ><span class="ltr:mr-1.5 rtl:ml-1.5">←</span><span>Pytorch 学习记录</span></a
+    ><a
+      class="justify-end pl-3 ltr:ml-auto rtl:mr-auto"
+      href="https://yatingliu2019.github.io/post/failed_to_read_xlsx/"
+      ><span>pthon | 使用 xlrd 读取 .xlsx 文件失败</span><span class="ltr:ml-1.5 rtl:mr-1.5">→</span></a
+    ></nav></article></main><footer
   class="mx-auto flex h-[4.5rem] max-w-(--w) items-center px-8 text-xs tracking-wider uppercase opacity-60"
 >
   <div class="mr-auto">© 2025, lyt.so</div>

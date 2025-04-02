@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>错误解决 on Liuyating&#39;s Blog</title>
+    <link>https://yatingliu2019.github.io/tags/%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3/</link>
+    <description>Recent content in 错误解决 on Liuyating&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>© 2025, lyt.so</copyright>
+    <lastBuildDate>Thu, 31 Mar 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://yatingliu2019.github.io/tags/%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Matlab | save无法写入文件 权限被拒绝</title>
+      <link>https://yatingliu2019.github.io/post/matlab_error_resolution_notes/</link>
+      <pubDate>Thu, 31 Mar 2022 00:00:00 +0000</pubDate>
+      <guid>https://yatingliu2019.github.io/post/matlab_error_resolution_notes/</guid>
+      <description>&lt;h2 id=&#34;方法&#34;&gt;方法① &lt;/h2&gt;&#xA;&lt;p&gt;！更改工作区地址为当前.m文件路径。&lt;img src=&#34;https://yatingliu2019.github.io/images/matlabimg.png&#34; alt=&#34;name&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;方法-1&#34;&gt;方法②&lt;/h2&gt;&#xA;&lt;p&gt;确认程序文件名没有特殊符号。&lt;/p&gt;&#xA;&lt;h2 id=&#34;方法-2&#34;&gt;方法③&lt;/h2&gt;&#xA;&lt;p&gt;显示说没有管理员权限,无法保存：&lt;/p&gt;&#xA;&lt;p&gt;运行matlab时不要直接双击打开,先点右键选择以管理员方式打开&lt;/p&gt;&#xA;&lt;p&gt;​&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>pthon | 使用 xlrd 读取 .xlsx 文件失败</title>
+      <link>https://yatingliu2019.github.io/post/failed_to_read_xlsx/</link>
+      <pubDate>Wed, 31 Mar 2021 00:00:00 +0000</pubDate>
+      <guid>https://yatingliu2019.github.io/post/failed_to_read_xlsx/</guid>
+      <description>&lt;p&gt;​&#xA;你已在群集上安装 xlrd，并且在尝试读取 Excel .xlsx 格式的文件时遇到错误。如图。&#xA;&lt;img src=&#34;https://yatingliu2019.github.io/images/pythonxlsximg.png&#34; alt=&#34;name&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;错误提示：&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;XLRDError: Excel xlsx file; not supported&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;原因：&lt;/p&gt;&#xA;&lt;p&gt;xlrd 2.0.0 及更高版本只能读取 .xls 文件。&lt;/p&gt;&#xA;&lt;p&gt;由于潜在的安全漏洞，已从 &lt;code&gt;xlrd&lt;/code&gt; 中删除对 .xlsx 文件的支持。&lt;/p&gt;&#xA;&lt;p&gt;解决方案：&lt;/p&gt;&#xA;&lt;p&gt;使用 &lt;code&gt;openpyxl&lt;/code&gt; 而不是 &lt;code&gt;xlrd&lt;/code&gt; 打开 .xlsx 文件。&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;在使用 pandas 读取 &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;xlsx 文件时指定 openpyxl&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; pandas &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; pd&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;contents &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; pd&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;read_excel(&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;`&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;name&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;of&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;file&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;.&lt;/span&gt;xlsx&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;`&lt;/span&gt;, engine&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;`&lt;/span&gt;openpyxl&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;`&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;​&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
