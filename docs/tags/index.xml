@@ -7,20 +7,20 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>© 2025, lyt.so</copyright>
-    <lastBuildDate>Tue, 26 Dec 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 02 Apr 2025 13:22:29 +0800</lastBuildDate>
     <atom:link href="https://yatingliu2019.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Index</title>
       <link>https://yatingliu2019.github.io/tags/index/</link>
-      <pubDate>Tue, 26 Dec 2023 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 02 Apr 2025 13:22:29 +0800</pubDate>
       <guid>https://yatingliu2019.github.io/tags/index/</guid>
       <description></description>
     </item>
     <item>
-      <title>Pytorch学习记录</title>
-      <link>https://yatingliu2019.github.io/tags/pytorch%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</link>
+      <title>Clipcap学习记录</title>
+      <link>https://yatingliu2019.github.io/tags/clipcap%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</link>
       <pubDate>Tue, 26 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>https://yatingliu2019.github.io/tags/pytorch%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</guid>
+      <guid>https://yatingliu2019.github.io/tags/clipcap%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</guid>
       <description></description>
     </item>
     <item>
@@ -31,17 +31,10 @@
       <description></description>
     </item>
     <item>
-      <title>Privacy</title>
-      <link>https://yatingliu2019.github.io/tags/privacy/</link>
-      <pubDate>Tue, 12 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>https://yatingliu2019.github.io/tags/privacy/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Shortcodes</title>
-      <link>https://yatingliu2019.github.io/tags/shortcodes/</link>
-      <pubDate>Tue, 12 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>https://yatingliu2019.github.io/tags/shortcodes/</guid>
+      <title>Pytorch学习记录</title>
+      <link>https://yatingliu2019.github.io/tags/pytorch%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Wed, 24 Aug 2022 00:00:00 +0000</pubDate>
+      <guid>https://yatingliu2019.github.io/tags/pytorch%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</guid>
       <description></description>
     </item>
     <item>
@@ -63,6 +56,20 @@
       <link>https://yatingliu2019.github.io/tags/markdown/</link>
       <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
       <guid>https://yatingliu2019.github.io/tags/markdown/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Privacy</title>
+      <link>https://yatingliu2019.github.io/tags/privacy/</link>
+      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>https://yatingliu2019.github.io/tags/privacy/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Shortcodes</title>
+      <link>https://yatingliu2019.github.io/tags/shortcodes/</link>
+      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>https://yatingliu2019.github.io/tags/shortcodes/</guid>
       <description></description>
     </item>
     <item>

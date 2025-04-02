@@ -2,10 +2,10 @@
 title = "Clipcap学习笔记"
 author = "lyt"
 date = "2023-12-26"
-description = "A brief description of Hugo Shortcodes"
+description = "A learning record of clipcap"
 tags = [
     "深度学习",
-    "pytorch学习记录",
+    "clipcap学习记录",
 ]
 +++
  

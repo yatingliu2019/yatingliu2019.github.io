@@ -1,0 +1,656 @@
+<!doctype html>
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg:#faf8f1"
+  lang="en"
+  dir="ltr"
+><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>Pytorch 学习记录-Liuyating&#39;s Blog</title>
+
+  
+  <meta name="theme-color" />
+
+  <meta name="description" content="学习记录（一）
+一、pytorch的安装
+1.查看是否已安装 pytorch
+从cmd（win&#43;R）打开anaconda环境，
+conda info -e （查看所有的虚拟环境）
+activate -name（虚拟环境名字）（进入到该虚拟环境中）
+pip list（查看安装好的库 )
+2.安装CUDA和CUDNN
+查看自己的cuda，去 table2 查找对应的，比如我的版本是CUDA 11.0.2 GA，确认好版本，下载对应的 CUDA 和 CUDNN，建议安装在C盘（下载CUDNN需要先注册）
+3.安装pytorch
+建议直接官网下载 pytorch
+复制后，输入cmd，等待安装
+4.检查安装是否成功
+python
+
+import torch 
+
+torch.cuda.is_available()
+不报错，则安装成功。
+5.调试环境（不必须）
+如果想在jupyter notebook中使用配置好的anaconda环境的话，可以直接在环境中
+conda install nb_conda
+然后再进入jupyter notebook就可以了
+如果想使用pycharm，在Files-Settings-Python Interpreter里面设置一下，就可以了。
+二、简单函数
+1.创建一个矩阵
+x = torch.empty(5,3)
+tensor是基本单位
+2.创建一个随机矩阵
+x = torch.rand(5,3)
+3.初始化一个全零矩阵（5x3）
+x = torch.zeros(5,3,dtype=torch.long)
+4.直接赋值
+x = torch.tensor([5.5,3])
+5.展示矩阵大小
+x = x.size()
+6.view - 改变矩阵维度
+x = torch.randn(4,4)
+y = x.view(16)
+z = x.view(-1,8)
+print(x.size(),y.size(),z.size())
+print(x)
+print(y)
+print(z)
+7.与 numpy 协作
+import numpy as np
+import torch
+# torch -&gt; numpy
+a = torch.ones(5)
+b = a.numpy()
+print(b)
+
+# numpy -&gt; torch
+a1 = np.ones(5)
+b1 = torch.from_numpy(a1)
+print(b1)
+
+感谢以下博主提供的帮助：
+​Cuda和cuDNN安装教程(超级详细)_jhsignal的博客-CSDN博客_安装cudnn
+使用anaconda虚拟环境运行Jupyter Notebook详解_w55100的博客-CSDN博客_anaconda jupyter 环境" />
+  <meta name="author" content="lyt" /><link rel="preload stylesheet" as="style" href="https://yatingliu2019.github.io/main.min.css" />
+
+  
+  <link rel="preload" as="image" href="https://yatingliu2019.github.io/theme.png" />
+
+  <link rel="preload" as="image" href="https://yatingliu2019.github.io/images/p1.jpg" />
+
+  <link rel="preload" as="image" href="https://yatingliu2019.github.io/github.svg" /><link rel="preload" as="image" href="https://yatingliu2019.github.io/mastodon.svg" />
+
+  <script
+    defer
+    src="https://yatingliu2019.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+
+  
+  <link
+    rel="icon"
+    href="https://yatingliu2019.github.io/favicon.ico"
+  />
+  <link
+    rel="apple-touch-icon"
+    href="https://yatingliu2019.github.io/apple-touch-icon.png"
+  />
+
+  <meta name="generator" content="Hugo 0.145.0">
+  <meta itemprop="name" content="Pytorch 学习记录">
+  <meta itemprop="description" content="A learning record of Pytorch">
+  <meta itemprop="datePublished" content="2022-08-24T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2022-08-24T00:00:00+00:00">
+  <meta itemprop="wordCount" content="872">
+  <meta itemprop="keywords" content="深度学习,Pytorch学习记录"><meta property="og:url" content="https://yatingliu2019.github.io/post/pytorch_learning_record/">
+  <meta property="og:site_name" content="Liuyating&#39;s Blog">
+  <meta property="og:title" content="Pytorch 学习记录">
+  <meta property="og:description" content="A learning record of Pytorch">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2022-08-24T00:00:00+00:00">
+    <meta property="article:modified_time" content="2022-08-24T00:00:00+00:00">
+    <meta property="article:tag" content="深度学习">
+    <meta property="article:tag" content="Pytorch学习记录">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Pytorch 学习记录">
+  <meta name="twitter:description" content="A learning record of Pytorch">
+
+  <link rel="canonical" href="https://yatingliu2019.github.io/post/pytorch_learning_record/" />
+</head>
+<body
+    class="bg-(--bg) text-black antialiased duration-200 ease-out [-webkit-tap-highlight-color:transparent] dark:text-white"
+  ><header
+  class="mx-auto flex h-[4.5rem] max-w-(--w) px-8 whitespace-nowrap lg:justify-center"
+>
+  <div class="relative z-50 flex items-center ltr:mr-auto rtl:ml-auto">
+    <a
+      class="-translate-y-[1px] text-2xl font-medium"
+      href="https://yatingliu2019.github.io/"
+      >Liuyating&#39;s Blog</a
+    >
+    <div
+      class="btn-dark text-[0px] ltr:ml-4 rtl:mr-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden ltr:-mr-8 rtl:-ml-8"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full flex-col justify-center bg-(--bg) pb-16 duration-200 select-none lg:static lg:h-auto lg:flex-row lg:bg-transparent! lg:pb-0 lg:transition-none"
+  ><nav
+      class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-10 rtl:space-x-reverse"
+    ><a
+        class="block text-center text-xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/about/"
+        >教育及科研经历</a
+      ><a
+        class="block text-center text-xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/contact/"
+        >联系方式</a
+      ></nav><nav
+      class="mt-12 flex justify-center space-x-10 lg:mt-0 lg:items-center ltr:lg:ml-14 rtl:space-x-reverse rtl:lg:mr-14 dark:invert"
+    >
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/yatingliu2019"
+        target="_blank"
+        rel="me"
+      >github</a>
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./mastodon.svg)"
+        href="https://blog.csdn.net/qq_51870267?spm=1011.2415.3001.5111"
+        target="_blank"
+        rel="me"
+      >mastodon</a>
+    </nav>
+  </div>
+</header>
+<main
+      class="prose prose-neutral dark:prose-invert relative mx-auto min-h-[calc(100vh-9rem)] max-w-(--w) px-8 pt-14 pb-16"
+    ><article>
+  <header class="mb-14">
+    <h1 class="my-0! pb-2.5">Pytorch 学习记录</h1><div class="text-xs antialiased opacity-60"><time>Aug 24, 2022</time><span class="mx-1">&middot;</span>
+      <span>lyt</span></div></header>
+
+  <section><h1 id="学习记录一">学习记录（一）</h1>
+<h2 id="一pytorch的安装">一、pytorch的安装</h2>
+<h3 id="1查看是否已安装-pytorch">1.查看是否已安装 pytorch</h3>
+<p>从cmd（win+R）打开anaconda环境，</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>conda info -e （查看所有的虚拟环境）
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>activate -name（虚拟环境名字）（进入到该虚拟环境中）
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip list（查看安装好的库 <span style="color:#f92672">)</span>
+</span></span></code></pre></div><h3 id="2安装cuda和cudnn">2.安装CUDA和CUDNN</h3>
+<p>查看自己的cuda，去 <a href="https://www.cnblogs.com/klchang/p/14161002.html#:~:text=1%EF%BC%89%E6%9F%A5%E7%9C%8B%E6%9C%AC%E6%9C%BA%20CUDA%20%E9%A9%B1%E5%8A%A8%E7%89%88%E6%9C%AC%EF%BC%8C%E7%A1%AE%E8%AE%A4%20CUDA%20Toolkit%20%E7%9A%84%E5%85%BC%E5%AE%B9%E7%89%88%E6%9C%AC%E3%80%82%20%E5%9C%A8%E6%A1%8C%E9%9D%A2%E4%B8%8A%EF%BC%8C%E5%8F%B3%E9%94%AE%EF%BC%8C%E9%80%89%E6%8B%A9%20%E2%80%9CNVIDIA,%E6%9F%A5%E7%9C%8B%E7%BD%91%E4%B8%8A%E6%96%87%E6%A1%A3%20CUDA%20Toolkit%20Release%20Note%20%E4%B8%AD%E7%9A%84%20%22Table%202.">table2</a> 查找对应的，比如我的版本是CUDA 11.0.2 GA，确认好版本，下载对应的 <a href="https://blog.csdn.net/weixin_44177494/article/details/120444922">CUDA</a> 和 <a href="https://developer.nvidia.com/cudnn-downloads">CUDNN</a>，建议安装在C盘（下载CUDNN需要先注册）</p>
+<h3 id="3安装pytorch">3.安装pytorch</h3>
+<p>建议直接官网下载 <a href="https://pytorch.org/get-started/locally/">pytorch</a></p>
+<p>复制后，输入cmd，等待安装</p>
+<h3 id="4检查安装是否成功">4.检查安装是否成功</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>import torch 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>torch.cuda.is_available<span style="color:#f92672">()</span>
+</span></span></code></pre></div><p>不报错，则安装成功。</p>
+<h3 id="5调试环境不必须">5.调试环境（不必须）</h3>
+<p>如果想在jupyter notebook中使用配置好的anaconda环境的话，可以直接在环境中</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>conda install nb_conda
+</span></span></code></pre></div><p>然后再进入jupyter notebook就可以了</p>
+<p>如果想使用pycharm，在Files-Settings-Python Interpreter里面设置一下，就可以了。</p>
+<h2 id="二简单函数">二、简单函数</h2>
+<h3 id="1创建一个矩阵">1.创建一个矩阵</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>empty(<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">3</span>)
+</span></span></code></pre></div><p>tensor是基本单位</p>
+<h3 id="2创建一个随机矩阵">2.创建一个随机矩阵</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>rand(<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">3</span>)
+</span></span></code></pre></div><h3 id="3初始化一个全零矩阵5x3">3.初始化一个全零矩阵（5x3）</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>zeros(<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">3</span>,dtype<span style="color:#f92672">=</span>torch<span style="color:#f92672">.</span>long)
+</span></span></code></pre></div><h3 id="4直接赋值">4.直接赋值</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>tensor([<span style="color:#ae81ff">5.5</span>,<span style="color:#ae81ff">3</span>])
+</span></span></code></pre></div><h3 id="5展示矩阵大小">5.展示矩阵大小</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x <span style="color:#f92672">=</span> x<span style="color:#f92672">.</span>size()
+</span></span></code></pre></div><h3 id="6view---改变矩阵维度">6.view - 改变矩阵维度</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>randn(<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>y <span style="color:#f92672">=</span> x<span style="color:#f92672">.</span>view(<span style="color:#ae81ff">16</span>)
+</span></span><span style="display:flex;"><span>z <span style="color:#f92672">=</span> x<span style="color:#f92672">.</span>view(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">8</span>)
+</span></span><span style="display:flex;"><span>print(x<span style="color:#f92672">.</span>size(),y<span style="color:#f92672">.</span>size(),z<span style="color:#f92672">.</span>size())
+</span></span><span style="display:flex;"><span>print(x)
+</span></span><span style="display:flex;"><span>print(y)
+</span></span><span style="display:flex;"><span>print(z)
+</span></span></code></pre></div><h3 id="7与-numpy-协作">7.与 numpy 协作</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># torch -&gt; numpy</span>
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>ones(<span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> a<span style="color:#f92672">.</span>numpy()
+</span></span><span style="display:flex;"><span>print(b)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># numpy -&gt; torch</span>
+</span></span><span style="display:flex;"><span>a1 <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>ones(<span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>b1 <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>from_numpy(a1)
+</span></span><span style="display:flex;"><span>print(b1)
+</span></span></code></pre></div><blockquote>
+<p>感谢以下博主提供的帮助：<br>
+​<a href="https://blog.csdn.net/jhsignal/article/details/111401628">Cuda和cuDNN安装教程(超级详细)_jhsignal的博客-CSDN博客_安装cudnn</a><br>
+<a href="https://blog.csdn.net/w55100/article/details/88925697">使用anaconda虚拟环境运行Jupyter Notebook详解_w55100的博客-CSDN博客_anaconda jupyter 环境</a></p></blockquote>
+<h1 id="学习记录三">学习记录（三）</h1>
+<p>个人环境：win10</p>
+<p>Package：Python                   3.8.12</p>
+<p>                  torch                        1.11.0+cu113</p>
+<p>                  torchvision                  0.12.0+cu113</p>
+<p>                  tensorboard                  2.8.0</p>
+<h2 id="一目标">一、目标：</h2>
+<p>1.实验对象：选取数据集  CIFAR10</p>
+<p>2.目标网络：搭建分类网络</p>
+<p>3.操作流程：准备数据，加载数据，准备模型，设置损失函数，设置优化器，开始训练，最后验证，结果聚合展示。</p>
+<h2 id="二分析">二、分析</h2>
+<h3 id="1数据集">1.数据集：  </h3>
+<p>Cifar-10是由Hinton的两个大弟子Alex Krizhevsky、Ilya Sutskever收集的一个用于普适物体识别的数据集。Cifar是加拿大政府牵头投资的一个先进科学项目研究所。</p>
+<p>Cifar-10由60000张32*32的RGB彩色图片构成，共10个分类。50000张训练，10000张测试（交叉验证）。这个数据集最大的特点在于将识别迁移到了普适物体，而且应用于多分类（姊妹数据集Cifar-100达到100类，ILSVRC比赛则是1000类）。</p>
+<h3 id="2该分类网络模型">​2.该分类网络模型：</h3>
+<p>输入内容先通过卷积层1Conv2d(input_channel3=3, output_channel3=32, kernel_size=5, stride=1, padding=2)-&gt;最大池化层1MaxPool2d(2)-&gt;卷积层2Conv2d(32, 32, 5, 1, 2)-&gt;最大池化层2MaxPool2d(2)-&gt;卷积层3Conv2d(32, 64, 5, 1, 2)-&gt;最大池化层3MaxPool2d(2)-&gt;展平层Flatten()-&gt;线性化Linear(64 * 4 * 4, 64)-&gt;线性化Linear(64, 10)</p>
+<h2 id="三训练代码">三、训练代码</h2>
+<h3 id="1准备测试集和训练集数据-使用-dataset-和dataloader">1.准备测试集和训练集数据 ：使用 Dataset 和DataLoader</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#准备数据集 训练数据 + 测试数据集</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.data <span style="color:#f92672">import</span> DataLoader
+</span></span><span style="display:flex;"><span>train_data <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>datasets<span style="color:#f92672">.</span>CIFAR10(<span style="color:#e6db74">&#34;../data&#34;</span>, train<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, transform<span style="color:#f92672">=</span>torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>ToTensor(),
+</span></span><span style="display:flex;"><span>                                          download<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>test_data <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>datasets<span style="color:#f92672">.</span>CIFAR10(<span style="color:#e6db74">&#34;../data&#34;</span>, train<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>, transform<span style="color:#f92672">=</span>torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>ToTensor(),
+</span></span><span style="display:flex;"><span>                                          download<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span></code></pre></div><h3 id="2确定两个数据集的大小-len-并打印">2.确定两个数据集的大小 len() 并打印</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#数据集的长度</span>
+</span></span><span style="display:flex;"><span>train_data_size <span style="color:#f92672">=</span> len(train_data)
+</span></span><span style="display:flex;"><span>test_data_size <span style="color:#f92672">=</span> len(test_data)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   train_data_size-&gt;数据集的长度</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;训练数据集的长度是: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(train_data_size))
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;测试数据集的长度是: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(test_data_size))
+</span></span></code></pre></div><h3 id="3利用dataloader加载两个数据集">3.利用DataLoader加载两个数据集</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#利用DataLoader加载数据集</span>
+</span></span><span style="display:flex;"><span>train_dataloader <span style="color:#f92672">=</span> DataLoader(train_data, batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>)
+</span></span><span style="display:flex;"><span>test_dataloader <span style="color:#f92672">=</span> DataLoader(test_data, batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>)
+</span></span></code></pre></div><h3 id="4建立神经网络模型">4.建立神经网络模型</h3>
+<p>因为数据集是有10种类别,所以必须要搭建一个十分类的网络</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#创建网络模型</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">N</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        super(N, self)<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>model1 <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Conv2d(in_channels<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, out_channels<span style="color:#f92672">=</span><span style="color:#ae81ff">32</span>, kernel_size<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>, stride<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, padding<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Conv2d(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Conv2d(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">64</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Flatten(),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">64</span><span style="color:#f92672">*</span><span style="color:#ae81ff">4</span><span style="color:#f92672">*</span><span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">64</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">64</span>, <span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,x):
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>model1(x)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> x
+</span></span><span style="display:flex;"><span>NN <span style="color:#f92672">=</span> N()
+</span></span></code></pre></div><h3 id="5损失函数">5.损失函数</h3>
+<p>因为是分类问题,所以选择用交叉熵</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#损失函数</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   因为是分类问题,所以选择用交叉熵</span>
+</span></span><span style="display:flex;"><span>loss_fn <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>CrossEntropyLoss()
+</span></span></code></pre></div><h3 id="6优化器">6.优化器</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#优化器</span>
+</span></span><span style="display:flex;"><span>learning_rate <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e-2</span><span style="color:#75715e">#=1 x 10 ^ (-2) = 0.01</span>
+</span></span><span style="display:flex;"><span>optimizer <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>optim<span style="color:#f92672">.</span>SGD(NN<span style="color:#f92672">.</span>parameters(), lr<span style="color:#f92672">=</span>learning_rate)
+</span></span></code></pre></div><h3 id="7设置训练网络参数">7.设置训练网络参数</h3>
+<p>包含训练次数、测试次数和训练轮数</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#设置训练网络参数</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   训练次数</span>
+</span></span><span style="display:flex;"><span>total_train_step <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   测试次数</span>
+</span></span><span style="display:flex;"><span>total_test_step <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   训练轮数</span>
+</span></span><span style="display:flex;"><span>epoch <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
+</span></span></code></pre></div><h3 id="8添加tensorboard">8.添加tensorboard</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#添加tensorboard</span>
+</span></span><span style="display:flex;"><span>writer <span style="color:#f92672">=</span> SummaryWriter(<span style="color:#e6db74">&#34;../logs_model&#34;</span>)
+</span></span></code></pre></div><h3 id="9开始重复训练">9.开始重复训练</h3>
+<h4 id="91-训练部分">9.1 训练部分 </h4>
+<p>注意损失函数的backward的优化</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>NN<span style="color:#f92672">.</span>train()<span style="color:#75715e">#把网络设置成训练模式（不必要，.eval()一样，对Dropout和BatchNorm层有用</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#开始训练</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> data <span style="color:#f92672">in</span> train_dataloader:
+</span></span><span style="display:flex;"><span>        imgs, targets <span style="color:#f92672">=</span> data
+</span></span><span style="display:flex;"><span>        output <span style="color:#f92672">=</span> NN(imgs)
+</span></span><span style="display:flex;"><span>        loss <span style="color:#f92672">=</span> loss_fn(output, targets)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 优化器优化模型</span>
+</span></span><span style="display:flex;"><span>        optimizer<span style="color:#f92672">.</span>zero_grad()
+</span></span><span style="display:flex;"><span>        loss<span style="color:#f92672">.</span>backward()
+</span></span><span style="display:flex;"><span>        optimizer<span style="color:#f92672">.</span>step()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        total_train_step <span style="color:#f92672">=</span> total_train_step <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> total_train_step <span style="color:#f92672">%</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">&#34;训练次数 </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">, LOSS = </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(total_train_step, loss<span style="color:#f92672">.</span>item())) <span style="color:#75715e">#.item()-&gt;把tensor型转化成真实数字</span>
+</span></span><span style="display:flex;"><span>            writer<span style="color:#f92672">.</span>add_scalar(<span style="color:#e6db74">&#34;train_loss&#34;</span>, loss<span style="color:#f92672">.</span>item(), total_train_step)
+</span></span></code></pre></div><h4 id="92-开始测试">9.2 开始测试</h4>
+<p>注意计算正确率的算法还有损失的统计方法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#开始测试</span>
+</span></span><span style="display:flex;"><span>    NN<span style="color:#f92672">.</span>eval()<span style="color:#75715e">#不必要</span>
+</span></span><span style="display:flex;"><span>    total_test_loss <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#   计算整体正确的个数</span>
+</span></span><span style="display:flex;"><span>    total_accuracy <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#调试的时候不需要带梯度来优化</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">with</span> torch<span style="color:#f92672">.</span>no_grad():
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> data <span style="color:#f92672">in</span> test_dataloader:
+</span></span><span style="display:flex;"><span>            imgs, targets <span style="color:#f92672">=</span> data
+</span></span><span style="display:flex;"><span>            outputs <span style="color:#f92672">=</span> NN(imgs)
+</span></span><span style="display:flex;"><span>            loss <span style="color:#f92672">=</span> loss_fn(outputs, targets)
+</span></span><span style="display:flex;"><span>            total_test_loss <span style="color:#f92672">=</span> total_test_loss <span style="color:#f92672">+</span> loss<span style="color:#f92672">.</span>item()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            accuracy <span style="color:#f92672">=</span> (outputs<span style="color:#f92672">.</span>argmax(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">==</span> targets)<span style="color:#f92672">.</span>sum()
+</span></span><span style="display:flex;"><span>            total_accuracy <span style="color:#f92672">=</span> total_accuracy <span style="color:#f92672">+</span> accuracy
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;整体测试集上的loss = </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(total_test_loss))
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;整体测试集上的正确率 = </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(total_accuracy<span style="color:#f92672">/</span>test_data_size))
+</span></span><span style="display:flex;"><span>        writer<span style="color:#f92672">.</span>add_scalar(<span style="color:#e6db74">&#34;test_loss&#34;</span>, loss<span style="color:#f92672">.</span>item(), total_test_loss, total_test_step)
+</span></span><span style="display:flex;"><span>        writer<span style="color:#f92672">.</span>add_scalar(<span style="color:#e6db74">&#34;test_accuracy&#34;</span>, total_accuracy<span style="color:#f92672">/</span>test_data_size, total_test_step)
+</span></span><span style="display:flex;"><span>        total_test_step <span style="color:#f92672">=</span> total_test_step <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><h4 id="93保存每一轮训练的结果">9.3保存每一轮训练的结果</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>注意保存模型的命名区分
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#保存每一轮训练的结果</span>
+</span></span><span style="display:flex;"><span>    torch<span style="color:#f92672">.</span>save(NN, <span style="color:#e6db74">&#34;NN_</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">.pth&#34;</span><span style="color:#f92672">.</span>format(i))
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#torch.save(NN.state_dict(), &#34;NN_{}.pth&#34;.format(i))</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;-----模型已保存------&#34;</span>)
+</span></span></code></pre></div><h2 id="四测试">四、测试</h2>
+<h3 id="1利用image-读取图片">1.利用 Image 读取图片</h3>
+<p>注意这里读取的照片是.png格式的，所以这里需要先转换为RGB，原因是如果不使用.convert(‘RGB’)进行转换的话，读出来的图像是RGBA四通道的。A通道为透明通道，该对深度学习模型训练来说暂时用不到，因此使用convert(‘RGB’)进行通道转换。同时还需要转换成transforms格式</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>image_path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;../imgs/airplane.png&#34;</span>
+</span></span><span style="display:flex;"><span>image <span style="color:#f92672">=</span> Image<span style="color:#f92672">.</span>open(image_path)
+</span></span><span style="display:flex;"><span>print(image)
+</span></span><span style="display:flex;"><span>image <span style="color:#f92672">=</span> image<span style="color:#f92672">.</span>convert(<span style="color:#e6db74">&#39;RGB&#39;</span>)
+</span></span><span style="display:flex;"><span>transform <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>Compose([torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>Resize((<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">32</span>)),
+</span></span><span style="display:flex;"><span>                                            torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>ToTensor()])
+</span></span><span style="display:flex;"><span>image <span style="color:#f92672">=</span> transform(image)
+</span></span><span style="display:flex;"><span>print(image<span style="color:#f92672">.</span>shape)
+</span></span></code></pre></div><h3 id="2测试部分代码">2.测试部分代码</h3>
+<p>注意我是使用GPU环境进行训练得到的模型，现在在cpu环境运行，需要转换一下device；同时这里可以带上model.eval()激活一下；这里最好使用不带梯度的来计算模型的输出</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>model <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>load(<span style="color:#e6db74">&#34;NN_9.pth&#34;</span>, map_location<span style="color:#f92672">=</span>torch<span style="color:#f92672">.</span>device(<span style="color:#e6db74">&#39;cpu&#39;</span>))<span style="color:#75715e">#我现在在cpu环境，但是我的模型是用cuda，所以模型加载的环境用map_location</span>
+</span></span><span style="display:flex;"><span>print(model)
+</span></span><span style="display:flex;"><span>image <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>reshape(image, (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">32</span>))
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>eval()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> torch<span style="color:#f92672">.</span>no_grad():
+</span></span><span style="display:flex;"><span>    output <span style="color:#f92672">=</span> model(image)
+</span></span><span style="display:flex;"><span>print(output)
+</span></span><span style="display:flex;"><span>print(output<span style="color:#f92672">.</span>argmax(<span style="color:#ae81ff">1</span>))
+</span></span></code></pre></div><h3 id="3结果">3.结果</h3>
+<p>测试了网络图片：飞机和小狗，分类均正确 </p>
+<h2 id="五完整代码">五、完整代码：</h2>
+<h3 id="1训练模型和保存模型gpu版本">1.训练模型和保存模型（GPU版本）</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#CIFAR10分类模型</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torchvision
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.tensorboard <span style="color:#f92672">import</span> SummaryWriter
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> time
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># from model_CIF import *</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#准备数据集 训练数据 + 测试数据集</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.data <span style="color:#f92672">import</span> DataLoader
+</span></span><span style="display:flex;"><span>train_data <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>datasets<span style="color:#f92672">.</span>CIFAR10(<span style="color:#e6db74">&#34;../data&#34;</span>, train<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, transform<span style="color:#f92672">=</span>torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>ToTensor(),
+</span></span><span style="display:flex;"><span>                                          download<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>test_data <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>datasets<span style="color:#f92672">.</span>CIFAR10(<span style="color:#e6db74">&#34;../data&#34;</span>, train<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>, transform<span style="color:#f92672">=</span>torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>ToTensor(),
+</span></span><span style="display:flex;"><span>                                          download<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#数据集的长度</span>
+</span></span><span style="display:flex;"><span>train_data_size <span style="color:#f92672">=</span> len(train_data)
+</span></span><span style="display:flex;"><span>test_data_size <span style="color:#f92672">=</span> len(test_data)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   train_data_size-&gt;数据集的长度</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;训练数据集的长度是: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(train_data_size))
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;测试数据集的长度是: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(test_data_size))
+</span></span><span style="display:flex;"><span>print()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#利用DataLoader加载数据集</span>
+</span></span><span style="display:flex;"><span>train_dataloader <span style="color:#f92672">=</span> DataLoader(train_data, batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>)
+</span></span><span style="display:flex;"><span>test_dataloader <span style="color:#f92672">=</span> DataLoader(test_data, batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#因为数据集是有10种类别,所以必须要搭建一个十分类的网络</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#搭建神经网络 在model_CIF.py中</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#创建网络模型</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">N</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        super(N, self)<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>model1 <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Conv2d(in_channels<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, out_channels<span style="color:#f92672">=</span><span style="color:#ae81ff">32</span>, kernel_size<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>, stride<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, padding<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Conv2d(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Conv2d(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">64</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Flatten(),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">64</span><span style="color:#f92672">*</span><span style="color:#ae81ff">4</span><span style="color:#f92672">*</span><span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">64</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">64</span>, <span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,x):
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>model1(x)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> x
+</span></span><span style="display:flex;"><span>NN <span style="color:#f92672">=</span> N()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>is_available():
+</span></span><span style="display:flex;"><span>    NN <span style="color:#f92672">=</span> NN<span style="color:#f92672">.</span>cuda()
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#损失函数</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   因为是分类问题,所以选择用交叉熵</span>
+</span></span><span style="display:flex;"><span>loss_fn <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>CrossEntropyLoss()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>is_available():
+</span></span><span style="display:flex;"><span>    loss_fn <span style="color:#f92672">=</span> loss_fn<span style="color:#f92672">.</span>cuda()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#优化器</span>
+</span></span><span style="display:flex;"><span>learning_rate <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e-2</span><span style="color:#75715e">#=1 x 10 ^ (-2) = 0.01</span>
+</span></span><span style="display:flex;"><span>optimizer <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>optim<span style="color:#f92672">.</span>SGD(NN<span style="color:#f92672">.</span>parameters(), lr<span style="color:#f92672">=</span>learning_rate)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#设置训练网络参数</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   训练次数</span>
+</span></span><span style="display:flex;"><span>total_train_step <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   测试次数</span>
+</span></span><span style="display:flex;"><span>total_test_step <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   训练轮数</span>
+</span></span><span style="display:flex;"><span>epoch <span style="color:#f92672">=</span> <span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#添加tensorboard</span>
+</span></span><span style="display:flex;"><span>writer <span style="color:#f92672">=</span> SummaryWriter(<span style="color:#e6db74">&#34;../logs_model&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#开始计时</span>
+</span></span><span style="display:flex;"><span>start_time <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#重复训练过程</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(epoch):
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;-----第 </span><span style="color:#e6db74">{}</span><span style="color:#e6db74"> 轮训练开始-----&#34;</span><span style="color:#f92672">.</span>format(i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    NN<span style="color:#f92672">.</span>train()<span style="color:#75715e">#把网络设置成训练模式（不必要，.eval()一样，对Dropout和BatchNorm层有用</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#开始训练</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> data <span style="color:#f92672">in</span> train_dataloader:
+</span></span><span style="display:flex;"><span>        imgs, targets <span style="color:#f92672">=</span> data
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>is_available():
+</span></span><span style="display:flex;"><span>            imgs <span style="color:#f92672">=</span> imgs<span style="color:#f92672">.</span>cuda()
+</span></span><span style="display:flex;"><span>            targets <span style="color:#f92672">=</span> targets<span style="color:#f92672">.</span>cuda()
+</span></span><span style="display:flex;"><span>        output <span style="color:#f92672">=</span> NN(imgs)
+</span></span><span style="display:flex;"><span>        loss <span style="color:#f92672">=</span> loss_fn(output, targets)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 优化器优化模型</span>
+</span></span><span style="display:flex;"><span>        optimizer<span style="color:#f92672">.</span>zero_grad()
+</span></span><span style="display:flex;"><span>        loss<span style="color:#f92672">.</span>backward()
+</span></span><span style="display:flex;"><span>        optimizer<span style="color:#f92672">.</span>step()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        total_train_step <span style="color:#f92672">=</span> total_train_step <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> total_train_step <span style="color:#f92672">%</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>            end_time <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">&#34;第 </span><span style="color:#e6db74">{}</span><span style="color:#e6db74"> 次训练用时 : </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(total_train_step, end_time<span style="color:#f92672">-</span>start_time))
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">&#34;LOSS = </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(loss<span style="color:#f92672">.</span>item())) <span style="color:#75715e">#.item()-&gt;把tensor型转化成真实数字</span>
+</span></span><span style="display:flex;"><span>            writer<span style="color:#f92672">.</span>add_scalar(<span style="color:#e6db74">&#34;train_loss&#34;</span>, loss<span style="color:#f92672">.</span>item(), total_train_step)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#开始测试</span>
+</span></span><span style="display:flex;"><span>    NN<span style="color:#f92672">.</span>eval()<span style="color:#75715e">#不必要</span>
+</span></span><span style="display:flex;"><span>    total_test_loss <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#   计算整体正确的个数</span>
+</span></span><span style="display:flex;"><span>    total_accuracy <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#调试的时候不需要带梯度来优化</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">with</span> torch<span style="color:#f92672">.</span>no_grad():
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> data <span style="color:#f92672">in</span> test_dataloader:
+</span></span><span style="display:flex;"><span>            imgs, targets <span style="color:#f92672">=</span> data
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>is_available():
+</span></span><span style="display:flex;"><span>                imgs <span style="color:#f92672">=</span> imgs<span style="color:#f92672">.</span>cuda()
+</span></span><span style="display:flex;"><span>                targets <span style="color:#f92672">=</span> targets<span style="color:#f92672">.</span>cuda()
+</span></span><span style="display:flex;"><span>            outputs <span style="color:#f92672">=</span> NN(imgs)
+</span></span><span style="display:flex;"><span>            loss <span style="color:#f92672">=</span> loss_fn(outputs, targets)
+</span></span><span style="display:flex;"><span>            total_test_loss <span style="color:#f92672">=</span> total_test_loss <span style="color:#f92672">+</span> loss<span style="color:#f92672">.</span>item()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            accuracy <span style="color:#f92672">=</span> (outputs<span style="color:#f92672">.</span>argmax(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">==</span> targets)<span style="color:#f92672">.</span>sum()
+</span></span><span style="display:flex;"><span>            total_accuracy <span style="color:#f92672">=</span> total_accuracy <span style="color:#f92672">+</span> accuracy
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;整体测试集上的loss = </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(total_test_loss))
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;整体测试集上的正确率 = </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(total_accuracy<span style="color:#f92672">/</span>test_data_size))
+</span></span><span style="display:flex;"><span>        writer<span style="color:#f92672">.</span>add_scalar(<span style="color:#e6db74">&#34;test_loss&#34;</span>, loss<span style="color:#f92672">.</span>item(), total_test_loss, total_test_step)
+</span></span><span style="display:flex;"><span>        writer<span style="color:#f92672">.</span>add_scalar(<span style="color:#e6db74">&#34;test_accuracy&#34;</span>, total_accuracy<span style="color:#f92672">/</span>test_data_size, total_test_step)
+</span></span><span style="display:flex;"><span>        total_test_step <span style="color:#f92672">=</span> total_test_step <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#保存每一轮训练的结果</span>
+</span></span><span style="display:flex;"><span>    torch<span style="color:#f92672">.</span>save(NN, <span style="color:#e6db74">&#34;NN_</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">.pth&#34;</span><span style="color:#f92672">.</span>format(i))
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#torch.save(NN.state_dict(), &#34;NN_{}.pth&#34;.format(i))</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;-----模型已保存------&#34;</span>)
+</span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>close()
+</span></span></code></pre></div><h3 id="2测试效果和检测照片">2.测试效果和检测照片</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torchvision
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> PIL <span style="color:#f92672">import</span> Image
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>image_path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;../imgs/airplane.png&#34;</span>
+</span></span><span style="display:flex;"><span>image <span style="color:#f92672">=</span> Image<span style="color:#f92672">.</span>open(image_path)
+</span></span><span style="display:flex;"><span>print(image)
+</span></span><span style="display:flex;"><span>image <span style="color:#f92672">=</span> image<span style="color:#f92672">.</span>convert(<span style="color:#e6db74">&#39;RGB&#39;</span>)
+</span></span><span style="display:flex;"><span>transform <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>Compose([torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>Resize((<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">32</span>)),
+</span></span><span style="display:flex;"><span>                                            torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>ToTensor()])
+</span></span><span style="display:flex;"><span>image <span style="color:#f92672">=</span> transform(image)
+</span></span><span style="display:flex;"><span>print(image<span style="color:#f92672">.</span>shape)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">N</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        super(N, self)<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>model1 <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Conv2d(in_channels<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, out_channels<span style="color:#f92672">=</span><span style="color:#ae81ff">32</span>, kernel_size<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>, stride<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, padding<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Conv2d(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Conv2d(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">64</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Flatten(),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">64</span><span style="color:#f92672">*</span><span style="color:#ae81ff">4</span><span style="color:#f92672">*</span><span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">64</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">64</span>, <span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,x):
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>model1(x)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>load(<span style="color:#e6db74">&#34;tudui_29_gpu.pth&#34;</span>, map_location<span style="color:#f92672">=</span>torch<span style="color:#f92672">.</span>device(<span style="color:#e6db74">&#39;cpu&#39;</span>))
+</span></span><span style="display:flex;"><span>print(model)
+</span></span><span style="display:flex;"><span>image <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>reshape(image, (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">32</span>))
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>eval()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> torch<span style="color:#f92672">.</span>no_grad():
+</span></span><span style="display:flex;"><span>    output <span style="color:#f92672">=</span> model(image)
+</span></span><span style="display:flex;"><span>print(output)
+</span></span><span style="display:flex;"><span>print(output<span style="color:#f92672">.</span>argmax(<span style="color:#ae81ff">1</span>))
+</span></span></code></pre></div></section>
+
+  <footer class="mt-12 flex flex-wrap"><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="https://yatingliu2019.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0"
+      >深度学习</a
+    ><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="https://yatingliu2019.github.io/tags/pytorch%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95"
+      >pytorch学习记录</a
+    ></footer><nav
+    class="mt-24 flex overflow-hidden rounded-xl bg-black/[3%] text-lg leading-[1.2]! *:flex *:w-1/2 *:items-center *:p-5 *:font-medium *:no-underline dark:bg-white/[8%] [&>*:hover]:bg-black/[2%] dark:[&>*:hover]:bg-white/[3%]"
+  ><a class="ltr:pr-3 rtl:pl-3" href="https://yatingliu2019.github.io/post/clipcap/"
+      ><span class="ltr:mr-1.5 rtl:ml-1.5">←</span><span>Clipcap学习笔记</span></a
+    ><a
+      class="justify-end pl-3 ltr:ml-auto rtl:mr-auto"
+      href="https://yatingliu2019.github.io/post/markdown-syntax/"
+      ><span>Markdown Syntax Guide</span><span class="ltr:ml-1.5 rtl:mr-1.5">→</span></a
+    ></nav></article></main><footer
+  class="mx-auto flex h-[4.5rem] max-w-(--w) items-center px-8 text-xs tracking-wider uppercase opacity-60"
+>
+  <div class="mr-auto">© 2025, lyt.so</div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >powered by hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >hugo-paper</a
+  >
+</footer>
+</body>
+</html>

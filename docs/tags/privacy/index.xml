@@ -7,7 +7,7 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>© 2025, lyt.so</copyright>
-    <lastBuildDate>Tue, 12 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 10 Mar 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://yatingliu2019.github.io/tags/privacy/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>test again</title>
@@ -15,20 +15,6 @@
       <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
       <guid>https://yatingliu2019.github.io/post/test-again/</guid>
       <description>&lt;h2 id=&#34;cehsi&#34;&gt;cehsi&lt;/h2&gt;&#xA;&lt;p&gt;sdjhfklshdf&lt;/p&gt;&#xA;&lt;p&gt;这是一张文章中的演示图片&lt;img src=&#34;https://yatingliu2019.github.io/images/image.png&#34; alt=&#34;name&#34;&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>test-again-today</title>
-      <link>https://yatingliu2019.github.io/post/test-again-today/</link>
-      <pubDate>Tue, 12 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>https://yatingliu2019.github.io/post/test-again-today/</guid>
-      <description>&lt;p&gt;创建新笔记：hugo new post/test-again-today.md&lt;/p&gt;&#xA;&lt;p&gt;备注部分的格式：&#xA;author = &amp;ldquo;lee.so&amp;rdquo;&#xA;title = &amp;ldquo;test-again-today&amp;rdquo;&#xA;date = &amp;ldquo;2019-03-12&amp;rdquo;&#xA;description = &amp;ldquo;A brief description of Hugo Shortcodes&amp;rdquo;&#xA;tags = [&#xA;&amp;ldquo;shortcodes&amp;rdquo;,&#xA;&amp;ldquo;privacy&amp;rdquo;,&#xA;]&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>My first post</title>
-      <link>https://yatingliu2019.github.io/post/test/</link>
-      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
-      <guid>https://yatingliu2019.github.io/post/test/</guid>
-      <description>&lt;h2 id=&#34;cehsi&#34;&gt;cehsi&lt;/h2&gt;&#xA;&lt;p&gt;sdjhfklshdf&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
