@@ -1,0 +1,714 @@
+<!doctype html>
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg:#faf8f1"
+  lang="en"
+  dir="ltr"
+><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>常见60个Linux指令-Liuyating&#39;s Blog</title>
+
+  
+  <meta name="theme-color" />
+
+  <meta name="description" content="1.ssh 登录到计算机主机
+ssh -p port username@hostname
+username： 远程计算机上的用户账户名。
+hostname： 远程计算机的 IP 地址或主机名。
+-p 选项指定端口号。
+2.ls 列出目录内容
+ls
+ls -l  # 显示详细列表
+ls -a  # 显示包括隐藏文件在内的所有内容
+3.pwd 当前终端会话所在的完整路径
+pwd
+4.cd 切换当前工作目录
+cd [directory]
+cd .. #上一级目录
+cd ~ #返回当前用户主目录
+5.touch 创建空文件或更新文件的时间戳
+touch [options] file
+6.echo 终端输出文本或变量值
+echo [options] [string...]
+echo &#34;This is a new line&#34; &gt; newfile.txt #写入文件
+echo &#34;Another line&#34; &gt;&gt; existingfile.txt #追加到文件
+string：要输出的文本或变量。
+7.nano 在终端中编辑文件
+nano [options] [file]
+# 例如：创建或编辑文件
+nano myfile.txt
+8.vim 文本编辑器
+普通模式（Normal Mode）： 默认模式，用于浏览和执行命令。
+插入模式（Insert Mode）： 用于文本输入。
+命令行模式（Command-Line Mode）： 用于输入命令（如保存、退出等）。" />
+  <meta name="author" content="lyt" /><link rel="preload stylesheet" as="style" href="https://yatingliu2019.github.io/main.min.css" />
+
+  
+  <link rel="preload" as="image" href="https://yatingliu2019.github.io/theme.png" />
+
+  <link rel="preload" as="image" href="https://yatingliu2019.github.io/images/p1.jpg" />
+
+  <link rel="preload" as="image" href="https://yatingliu2019.github.io/github.svg" /><link rel="preload" as="image" href="https://yatingliu2019.github.io/mastodon.svg" />
+
+  <script
+    defer
+    src="https://yatingliu2019.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+
+  
+  <link
+    rel="icon"
+    href="https://yatingliu2019.github.io/favicon.ico"
+  />
+  <link
+    rel="apple-touch-icon"
+    href="https://yatingliu2019.github.io/apple-touch-icon.png"
+  />
+
+  <meta name="generator" content="Hugo 0.145.0">
+  <meta itemprop="name" content="常见60个Linux指令">
+  <meta itemprop="description" content="A learning record of linux command">
+  <meta itemprop="datePublished" content="2024-11-30T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-11-30T00:00:00+00:00">
+  <meta itemprop="wordCount" content="1270">
+  <meta itemprop="keywords" content="Linux学习记录"><meta property="og:url" content="https://yatingliu2019.github.io/post/linuxcommand_learning_record/">
+  <meta property="og:site_name" content="Liuyating&#39;s Blog">
+  <meta property="og:title" content="常见60个Linux指令">
+  <meta property="og:description" content="A learning record of linux command">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2024-11-30T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-11-30T00:00:00+00:00">
+    <meta property="article:tag" content="Linux学习记录">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="常见60个Linux指令">
+  <meta name="twitter:description" content="A learning record of linux command">
+
+  <link rel="canonical" href="https://yatingliu2019.github.io/post/linuxcommand_learning_record/" />
+</head>
+<body
+    class="bg-(--bg) text-black antialiased duration-200 ease-out [-webkit-tap-highlight-color:transparent] dark:text-white"
+  ><header
+  class="mx-auto flex h-[4.5rem] max-w-(--w) px-8 whitespace-nowrap lg:justify-center"
+>
+  <div class="relative z-50 flex items-center ltr:mr-auto rtl:ml-auto">
+    <a
+      class="-translate-y-[1px] text-2xl font-medium"
+      href="https://yatingliu2019.github.io/"
+      >Liuyating&#39;s Blog</a
+    >
+    <div
+      class="btn-dark text-[0px] ltr:ml-4 rtl:mr-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden ltr:-mr-8 rtl:-ml-8"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full flex-col justify-center bg-(--bg) pb-16 duration-200 select-none lg:static lg:h-auto lg:flex-row lg:bg-transparent! lg:pb-0 lg:transition-none"
+  ><nav
+      class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-10 rtl:space-x-reverse"
+    ><a
+        class="block text-center text-xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/about/"
+        >教育及科研经历</a
+      ><a
+        class="block text-center text-xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/contact/"
+        >联系方式</a
+      ></nav><nav
+      class="mt-12 flex justify-center space-x-10 lg:mt-0 lg:items-center ltr:lg:ml-14 rtl:space-x-reverse rtl:lg:mr-14 dark:invert"
+    >
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/yatingliu2019"
+        target="_blank"
+        rel="me"
+      >github</a>
+      <a
+        class="h-7 w-7 text-[0px] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./mastodon.svg)"
+        href="https://blog.csdn.net/qq_51870267?spm=1011.2415.3001.5111"
+        target="_blank"
+        rel="me"
+      >mastodon</a>
+    </nav>
+  </div>
+</header>
+<main
+      class="prose prose-neutral dark:prose-invert relative mx-auto min-h-[calc(100vh-9rem)] max-w-(--w) px-8 pt-14 pb-16"
+    ><article>
+  <header class="mb-14">
+    <h1 class="my-0! pb-2.5">常见60个Linux指令</h1><div class="text-xs antialiased opacity-60"><time>Nov 30, 2024</time><span class="mx-1">&middot;</span>
+      <span>lyt</span></div></header>
+
+  <section><h2 id="1ssh-登录到计算机主机">1.ssh 登录到计算机主机</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh -p port username@hostname
+</span></span></code></pre></div><p><strong>username：</strong> 远程计算机上的用户账户名。</p>
+<p><strong>hostname：</strong> 远程计算机的 IP 地址或主机名。</p>
+<p><code>-p</code> 选项指定端口号。</p>
+<h2 id="2ls-列出目录内容">2.ls 列出目录内容</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls
+</span></span><span style="display:flex;"><span>ls -l  <span style="color:#75715e"># 显示详细列表</span>
+</span></span><span style="display:flex;"><span>ls -a  <span style="color:#75715e"># 显示包括隐藏文件在内的所有内容</span>
+</span></span></code></pre></div><h2 id="3pwd-当前终端会话所在的完整路径">3.pwd 当前终端会话所在的完整路径</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pwd
+</span></span></code></pre></div><h2 id="4cd-切换当前工作目录">4.cd 切换当前工作目录</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd <span style="color:#f92672">[</span>directory<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>cd .. <span style="color:#75715e">#上一级目录</span>
+</span></span><span style="display:flex;"><span>cd ~ <span style="color:#75715e">#返回当前用户主目录</span>
+</span></span></code></pre></div><h2 id="5touch-创建空文件或更新文件的时间戳">5.touch 创建空文件或更新文件的时间戳</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>touch <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> file
+</span></span></code></pre></div><h2 id="6echo-终端输出文本或变量值">6.echo 终端输出文本或变量值</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>string...<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;This is a new line&#34;</span> &gt; newfile.txt <span style="color:#75715e">#写入文件</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Another line&#34;</span> &gt;&gt; existingfile.txt <span style="color:#75715e">#追加到文件</span>
+</span></span></code></pre></div><p><strong>string</strong>：要输出的文本或变量。</p>
+<h2 id="7nano-在终端中编辑文件">7.nano 在终端中编辑文件</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nano <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>file<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 例如：创建或编辑文件</span>
+</span></span><span style="display:flex;"><span>nano myfile.txt
+</span></span></code></pre></div><h2 id="8vim-文本编辑器">8.vim 文本编辑器</h2>
+<p>普通模式（Normal Mode）： 默认模式，用于浏览和执行命令。</p>
+<p>插入模式（Insert Mode）： 用于文本输入。</p>
+<p>命令行模式（Command-Line Mode）： 用于输入命令（如保存、退出等）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vim filename.txt
+</span></span></code></pre></div><h2 id="9cat-查看连接和创建文件">9.cat 查看、连接和创建文件</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat filename.txt	<span style="color:#75715e">#显示文件内容</span>
+</span></span><span style="display:flex;"><span>cat file1.txt file2.txt	<span style="color:#75715e">#连接多个文件并显示</span>
+</span></span><span style="display:flex;"><span>cat file1.txt file2.txt &gt; combined.txt	<span style="color:#75715e">#将多个文件合并为一个文件</span>
+</span></span><span style="display:flex;"><span>cat file1.txt &gt;&gt; existingfile.txt	<span style="color:#75715e">#追加内容到文件末尾</span>
+</span></span><span style="display:flex;"><span>cat -n filename.txt	<span style="color:#75715e">#显示文件内容和行号</span>
+</span></span><span style="display:flex;"><span>cat -v filename.txt	<span style="color:#75715e">#显示不可打印字符</span>
+</span></span></code></pre></div><h2 id="10shred-安全删除敏感文件">10.shred 安全删除敏感文件</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>shred <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> file...
+</span></span></code></pre></div><p><code>-u</code>：在删除文件后删除文件名，即在销毁文件内容后删除文件本身。</p>
+<p><code>-v</code>：显示详细信息，输出进度信息。</p>
+<p><code>-n</code>：指定覆盖文件内容的次数，默认是 3 次。</p>
+<p><code>-z</code>：在覆盖后用零填充文件，以进一步掩盖删除的痕迹。</p>
+<h2 id="11mkdir-创建新目录">11.mkdir 创建新目录</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> directory...
+</span></span></code></pre></div><p><code>-p</code>：递归创建目录。如果上级目录不存在，mkdir 会自动创建它们。</p>
+<p><code>-v</code>：显示创建目录的详细信息。</p>
+<p><code>-m</code>：设置新目录的权限（模式），以八进制表示。</p>
+<h2 id="12cp-复制文件和目录">12.cp 复制文件和目录</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cp <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> source destination
+</span></span></code></pre></div><p>source：要复制的源文件或目录。</p>
+<p>destination：目标路径，可以是文件或目录。</p>
+<p><code>-r</code>, <code>--recursive</code>：递归复制，用于复制目录及其所有内容。</p>
+<p><code>-i</code>, <code>--interactive</code>：交互模式，如果目标文件已存在则提示是否覆盖。</p>
+<p><code>-v</code>, &ndash;verbose<code>：显示详细信息，输出复制操作的详细</code>信息。</p>
+<h2 id="13rm-删除文件和目录">13.rm 删除文件和目录</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rm <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> file...
+</span></span></code></pre></div><p>-r, &ndash;recursive：递归删除，用于删除目录及其所有内容。</p>
+<p>-f, &ndash;force：强制删除，不提示错误信息，即使文件不存在也不会报错。</p>
+<p>-i：交互式删除，在删除每个文件之前都会询问确认。</p>
+<p>-v, &ndash;verbose：显示详细信息，输出删除操作的详细信息。</p>
+<p>-d：删除空目录。</p>
+<h2 id="14rmdir-删除空目录">14.rmdir 删除空目录</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rmdir <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> directory...
+</span></span></code></pre></div><p><code>-p</code>：递归删除目录，即删除指定目录及其所有空的父目录。</p>
+<p><code>-v</code>, <code>--verbose</code>：显示详细信息，输出删除操作的详细信息。</p>
+<h2 id="15ln-创建链接">15.ln 创建链接</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ln <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> source <span style="color:#f92672">[</span>target<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p><code>-s</code>, <code>--symbolic</code>：创建符号链接。如果不使用此选项，将创建硬链接。</p>
+<p><code>-f</code>, -<code>-force</code>：强制创建链接，覆盖已存在的文件或链接。</p>
+<p><code>-i</code>, <code>--interactive</code>：交互式创建链接，如果目标已存在则提示确认。</p>
+<h2 id="16clear-清除终端屏幕">16.clear 清除终端屏幕</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>clear
+</span></span></code></pre></div><h2 id="17whoami-显示当前的用户的用户名确定当前用户身份">17.whoami 显示当前的用户的用户名（确定当前用户身份）</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>whoami
+</span></span><span style="display:flex;"><span>id	<span style="color:#75715e">#当前用户的详细信息，包括用户 ID (UID)、组 ID (GID) 以及所属组</span>
+</span></span><span style="display:flex;"><span>who	<span style="color:#75715e">#系统中所有当前登录的用户</span>
+</span></span></code></pre></div><h2 id="18useradd-创建新用户账户系统管理员添加新用户">18.useradd 创建新用户账户（系统管理员添加新用户）</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo useradd <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> username
+</span></span></code></pre></div><p><code>-m</code>：创建用户的家目录（/home/username），如果家目录不存在时。</p>
+<p><code>-d</code>：指定用户的家目录路径。</p>
+<p><code>-s</code>：指定用户的默认 shell（如 /bin/bash）。</p>
+<p><code>-g</code>：指定用户的初始主组。</p>
+<p><code>-G</code>：指定用户所属的附加组（可以指定多个组，用逗号分隔）。</p>
+<p><code>-e</code>：设置用户账户的过期日期（格式为 YYYY-MM-DD）。</p>
+<p><code>-p</code>：指定用户的密码（通常是加密后的密码，明文密码不推荐）。</p>
+<p><code>-c</code>：添加用户的注释（如全名）。</p>
+<p><code>-f</code>：指定用户账户过期后的天数，-1 表示用户账户永不过期。</p>
+<h2 id="19sudo-超级用户root权限执行命令">19.sudo 超级用户（root）权限执行命令</h2>
+<p>普通用户执行管理员权限的任务，而不需要直接登录root用户</p>
+<p>使用 sudo 时通常需要输入用户密码，而不是 root 密码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo command <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 以超级用户权限安装软件（例如使用 apt-get）</span>
+</span></span><span style="display:flex;"><span>sudo apt-get update
+</span></span><span style="display:flex;"><span>sudo apt-get install package_name
+</span></span></code></pre></div><h2 id="20adduser-创建新用户账户">20.adduser 创建新用户账户</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo adduser <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> username
+</span></span></code></pre></div><p>在一些 Linux 发行版中，adduser 是 useradd 的一个友好封装，功能上类似但提供了更多的默认设置和提示。</p>
+<p><code>--home</code>：指定用户的家目录路径。</p>
+<p><code>--shell</code>：指定用户的默认 shell。</p>
+<p><code>--gecos</code>：添加用户的注释（如全名）。</p>
+<p><code>--ingroup</code>：指定用户的初始主组。</p>
+<p><code>--disabled-password</code>：创建用户时不设置密码。</p>
+<p><code>--disabled-login</code>：创建用户时禁用登录。</p>
+<h2 id="21su-切换用户账户">21.su 切换用户账户</h2>
+<p><code>su</code> 是 &ldquo;substitute user&rdquo; 或 &ldquo;switch user&rdquo; 的缩写，它可以让你切换到另一个用户账户，包括 root 用户。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>su <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>username<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>su -	<span style="color:#75715e">#切换到 root 用户并模拟登录</span>
+</span></span><span style="display:flex;"><span>su -c <span style="color:#e6db74">&#39;ls /home/username&#39;</span> username	<span style="color:#75715e"># username 用户身份执行 ls 命令列出 /home/username 目录的内容</span>
+</span></span></code></pre></div><h2 id="22exit-退出当前终端会话或shell">22.exit 退出当前终端会话或shell</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>exit <span style="color:#f92672">[</span>n<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p><code>n</code>（可选）：退出状态码。如果指定了状态码，exit 将返回这个状态码。默认情况下，exit 返回上一个命令的退出状态码（通常为 0 表示成功，其他值表示错误）。</p>
+<h2 id="23passwd-修改用户密码">23.passwd 修改用户密码</h2>
+<p>在 Unix 和 Linux 系统中，你可以使用 <code>passwd</code> 命令来更改自己的密码或其他用户的密码（需要管理员权限）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo passwd <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>username<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p><code>username</code>（可选）：要更改密码的用户。如果省略用户名，<code>passwd</code> 将修改当前用户的密码。</p>
+<p><code>-d</code>：删除用户密码，使用户无法使用密码登录（仅限 root 用户）。</p>
+<p><code>-l</code>：锁定用户账户，禁止用户使用密码登录。</p>
+<p><code>-u</code>：解锁用户账户，允许用户使用密码登录。</p>
+<p><code>-e</code>：强制用户在下次登录时更改密码（即将密码设置为过期状态）。</p>
+<p><code>-i</code>：设置密码过期时间，单位为天。若设置为 0，密码会立即过期。</p>
+<h2 id="24apt-处理软件包的安装升级删除和管理">24.apt 处理软件包的安装、升级、删除和管理</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt update	<span style="color:#75715e">#更新软件包列表</span>
+</span></span><span style="display:flex;"><span>sudo apt upgrade	<span style="color:#75715e">#升级已安装的软件包</span>
+</span></span><span style="display:flex;"><span>sudo apt full-upgrade	<span style="color:#75715e">#升级所有软件包并处理依赖关系</span>
+</span></span><span style="display:flex;"><span>sudo apt install package_name	<span style="color:#75715e">#安装软件包</span>
+</span></span><span style="display:flex;"><span>sudo apt remove package_name	<span style="color:#75715e">#卸载软件包</span>
+</span></span></code></pre></div><h2 id="25finger-显示用户信息">25.finger 显示用户信息</h2>
+<p>在 Unix 和 Linux 系统中，finger 可以用来查看用户的基本信息、登录状态以及其他与用户相关的细节。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>finger <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>username<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>finger $USER	<span style="color:#75715e">#查看当前用户的信息</span>
+</span></span></code></pre></div><p><code>-l</code>：以详细模式显示用户信息。</p>
+<p><code>-s</code>：以简洁模式显示用户信息，只包括基本信息。</p>
+<h2 id="26man-查看命令函数配置文件和其他程序文档">26.man 查看命令、函数、配置文件和其他程序文档</h2>
+<p><code>man</code> 是 &ldquo;manual&rdquo; 的缩写，通过它你可以访问系统的手册页（manual pages），这些手册页提供了详细的使用说明和参考信息。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>man <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> command
+</span></span><span style="display:flex;"><span>man ls	<span style="color:#75715e">#查看命令的手册页</span>
+</span></span></code></pre></div><p><code>-k</code>：根据关键字搜索手册页。</p>
+<p><code>-f</code>：显示命令或函数的简要说明。</p>
+<p><code>-a</code>：显示所有匹配的手册页，而不仅仅是第一个。</p>
+<p><code>-P pager</code>：指定使用的分页程序。默认是 <code>less</code>，但你可以指定其他分页程序，例如 <code>more</code>。</p>
+<h2 id="27whatis-显示命令或程序的简短描述">27.whatis 显示命令或程序的简短描述</h2>
+<p><code>whatis</code> 命令依赖于系统的手册页数据库，因此如果系统没有更新数据库，或者手册页没有被正确安装，<code>whatis</code> 可能无法提供描述。</p>
+<p>你可以使用 <code>mandb</code> 命令来更新手册页数据库，以确保 <code>whatis</code> 命令能提供最新的描述。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>whatis <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> command
+</span></span></code></pre></div><h2 id="28curl-从命令行传输数据">28.curl 从命令行传输数据</h2>
+<p><code>curl</code> 是一个用于从命令行传输数据的工具，支持多种协议，如 HTTP、HTTPS、FTP、SFTP 等。它通常用于下载或上传文件、测试 API、检索网页内容等任务。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>URL<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p><code>-o</code>：将输出保存到文件中。
+<code>-O</code>：使用 URL 中的文件名保存文件。
+<code>-d</code>：发送 POST 请求时使用的数据。
+<code>-H</code>：添加 HTTP 请求头。
+<code>-i</code>：显示响应头和响应体。
+<code>-I</code>：仅显示响应头。
+<code>-L</code>：跟踪重定向。
+<code>-x</code>：使用代理服务器。</p>
+<h2 id="29zip-创建和管理压缩文件">29.zip 创建和管理压缩文件</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>zip <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> zipfile files
+</span></span></code></pre></div><p><code>-r</code>：递归压缩目录及其子目录和文件。
+<code>-e</code>：为压缩文件添加密码保护。
+<code>-u</code>：更新压缩文件，添加新文件或更新已存在的文件。
+<code>-d</code>：从压缩文件中删除指定的文件。
+<code>-l</code>：列出压缩文件中的内容。
+<code>-T</code>：测试压缩文件的完整性。</p>
+<h2 id="30unzip-解压缩zip文件">30.unzip 解压缩zip文件</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>unzip <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> zipfile
+</span></span></code></pre></div><p><code>-d</code>：指定解压缩到的目标目录。
+<code>-l</code>：列出 .zip 文件中的内容。
+<code>-t</code>：测试 .zip 文件的完整性。
+<code>-u</code>：更新目标文件，仅在目标文件比 .zip 文件中的文件旧时更新。
+<code>-o</code>：覆盖现有文件而不提示。</p>
+<h2 id="31less-查看文本文件">31.less 查看文本文件</h2>
+<p><code>less</code> 是一个用于查看文本文件的分页工具，可以逐页或逐行浏览文件内容。它比 <code>more</code> 命令功能更强大，支持在文件中向前和向后滚动、搜索和其他导航功能。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>less <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> file
+</span></span></code></pre></div><p><code>-N</code>：显示行号。
+<code>-S</code>：禁用自动换行，水平滚动显示长行。
+<code>-F</code>：如果内容能在一屏内显示，则自动退出 less。
+<code>-X</code>：禁用终端的显示控制（例如颜色），在使用管道时很有用。</p>
+<h2 id="32head-显示文件的开头部分">32.head 显示文件的开头部分</h2>
+<p><code>head</code>用于查看文件的前几行内容</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>head <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> file
+</span></span><span style="display:flex;"><span>head -n <span style="color:#ae81ff">15</span> file.txt	<span style="color:#75715e">#查看 file.txt 的前 15 行</span>
+</span></span></code></pre></div><h2 id="33tail-显示文件尾部的部分">33.tail 显示文件尾部的部分</h2>
+<p><code>tail</code>用于查看文件的前几行内容，特别是在查看日志文件时非常有用。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>tail <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> file
+</span></span><span style="display:flex;"><span>tail -n <span style="color:#ae81ff">15</span> filename.txt	<span style="color:#75715e">#指定显示的行数</span>
+</span></span><span style="display:flex;"><span>tail -f filename.txt	<span style="color:#75715e">#实时查看文件的新增内容（跟随模式）</span>
+</span></span></code></pre></div><h2 id="33cmp-比较两个文件内容">33.cmp 比较两个文件内容</h2>
+<p><code>cmp</code>逐字节比较文件内容，并报告文件之间的第一个不同之处。如果文件相同，则没有输出；如果不同，则输出第一个不同字节的位置和它们的不同内容。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cmp <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> file1 file2
+</span></span></code></pre></div><p><code>file1</code>：第一个要比较的文件。<code>file2</code>：第二个要比较的文件。
+<code>-l</code>：显示所有不同字节的位置和它们的不同内容。
+<code>-i</code>：忽略文件末尾的空白字符。
+<code>-b</code>：显示所有不同字节的位置和它们的不同内容，以十进制显示。
+<code>-s</code>：静默模式，不输出任何内容，仅返回退出状态码。0 表示文件相同，1 表示文件不同。
+<code>-i</code>：指定从哪个字节开始比较。</p>
+<h2 id="34diff-比较文件内容并显示差异">34.diff 比较文件内容并显示差异</h2>
+<p><code>diff</code>可以显示两个文件之间的不同之处，通常用于文件版本控制和差异分析。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>diff <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> file1 file2
+</span></span></code></pre></div><p><code>file1</code>：第一个要比较的文件。<code>file2</code>：第二个要比较的文件。
+<code>-u</code>：以统一格式显示差异。
+<code>-c</code>：以上下文格式显示差异。
+<code>-q</code>：简洁模式，仅指示文件是否不同。
+<code>-r</code>：递归比较目录及其内容。
+<code>-w</code>：忽略空白字符的差异。
+<code>-i</code>：忽略大小写的差异。
+<code>-b</code>：忽略行尾的空白字符差异。</p>
+<h2 id="35sort-对文本内容进行排序">35.sort 对文本内容进行排序</h2>
+<p>可以对文本中的行进行升序或降序排序</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sort <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> file
+</span></span></code></pre></div><p><code>-r</code>：按降序排序。
+<code>-n</code>：按数值排序。
+<code>-u</code>：去除重复行。# 36.find
+<code>-k</code>：指定排序字段。字段是通过空白字符或其他指定分隔符分隔的。
+<code>-t</code>：指定字段分隔符。
+<code>-b</code>：忽略行首的空白字符。
+<code>-f</code>：忽略大小写进行排序。
+<code>-M</code>：按月份排序，适用于日期字段。</p>
+<h2 id="36chmod-改变文件或目录权限">36.chmod 改变文件或目录权限</h2>
+<p>在 Unix 和 Linux 系统中，文件和目录的权限控制是确保系统安全的重要组成部分。chmod 允许你设置文件或目录的读、写、执行权限。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>chmod <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> mode file
+</span></span></code></pre></div><p><strong>mode</strong>：权限设置模式，指定新的权限。
+<strong>file</strong>：你要修改权限的文件或目录。
+权限模式：可以通过符号模式或八进制模式来设置：
+<strong>符号模式</strong>：
+r：读权限
+w：写权限
+x：执行权限</p>
+<p>权限设置的符号表示方法：
+u：用户（文件的所有者）
+g：组（文件所属的组）
+o：其他（文件的其他用户）
+a：所有用户（即 u, g, o 的并集）
+操作符：
++：添加权限
+-：移除权限
+=：设置权限，覆盖已有权限</p>
+<p><strong>八进制模式</strong>：由三个数字组成，每个数字代表文件的用户、组和其他用户的权限：
+rwxrwxrwx（表示文件所有者、组、其他用户的权限）
+每种权限用一个数字表示：
+4：读权限
+2：写权限
+1：执行权限
+这三个数字可以组合成其他权限：
+7：读、写和执行（4+2+1）
+6：读和写（4+2）
+5：读和执行（4+1）
+3：写和执行（2+1）
+2：写（2）
+1：执行（1）
+0：没有权限</p>
+<h2 id="37chown-更改文件或目录所有者和所属组的命令行">37.chown 更改文件或目录所有者和所属组的命令行</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>chown <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span> owner:group file
+</span></span></code></pre></div><p><strong>owner</strong>：新所有者的用户名或 UID（用户ID）。
+<strong>group</strong>：新所属组的组名或 GID（组ID）。如果省略，chown 只更改所有者。
+<strong>file</strong>：你要更改所有权的文件或目录。</p>
+<p><code>-R</code>：递归地更改目录及其内容的所有者和所属组。
+<code>--reference=file</code>：将所有者和所属组更改为另一个文件的所有者和所属组。
+<code>--verbose</code> 或 <code>-v</code>：在更改文件或目录的所有者和所属组时显示详细信息。</p>
+<h2 id="38ifconfig-配置和显示网络接口">38.ifconfig 配置和显示网络接口</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ifconfig <span style="color:#f92672">[</span>interface<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p><strong>interface</strong>：要配置或查看的网络接口名称（如 eth0、wlan0 等）。
+<strong>options</strong>：配置选项或参数。</p>
+<p>显示所有网络接口的信息：<code>ifconfig</code>
+启用（禁用）网络接口：<code>ifconfig eth0 up（down）</code>
+设置网络掩码：<code>ifconfig eth0 netmask 255.255.255.0</code></p>
+<h2 id="39ip-address-显示和修改网络接口的地址">39.ip address 显示和修改网络接口的地址</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ip address
+</span></span><span style="display:flex;"><span>ip address show <span style="color:#f92672">[</span>interface<span style="color:#f92672">]</span><span style="color:#75715e">#显示特定网络接口的地址</span>
+</span></span><span style="display:flex;"><span>ip address add <span style="color:#f92672">[</span>ip_address<span style="color:#f92672">]</span>/<span style="color:#f92672">[</span>mask<span style="color:#f92672">]</span> dev <span style="color:#f92672">[</span>interface<span style="color:#f92672">]</span><span style="color:#75715e">#添加新的IP地址到网络接口</span>
+</span></span><span style="display:flex;"><span>ip address flush <span style="color:#f92672">[</span>ip_address<span style="color:#f92672">]</span>/<span style="color:#f92672">[</span>mask<span style="color:#f92672">]</span> dev <span style="color:#f92672">[</span>interface<span style="color:#f92672">]</span><span style="color:#75715e">#删除网络接口的IP地址</span>
+</span></span></code></pre></div><h2 id="40grep-文本搜索">40.grep 文本搜索</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>grep <span style="color:#e6db74">&#34;text&#34;</span> filename
+</span></span></code></pre></div><p><code>-i</code>：忽略大小写
+<code>-v</code>：显示不包含匹配文本的行（反转匹配）
+<code>-n</code>：显示匹配行及行号
+<code>-E</code>：使用扩展正则表达式   grep -E &ldquo;regex1|regex2&rdquo; filename</p>
+<h2 id="41awk-处理和分析文本">41.awk 处理和分析文本</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>awk <span style="color:#e6db74">&#39;pattern { action }&#39;</span> filename
+</span></span><span style="display:flex;"><span>awk <span style="color:#e6db74">&#39;/error/ { print $0 }&#39;</span> filename <span style="color:#75715e">#打印包含 &#34;error&#34; 的行</span>
+</span></span><span style="display:flex;"><span>awk <span style="color:#e6db74">&#39;{ count[$1]++ } END { for (i in count) print count[i] }&#39;</span> filename <span style="color:#75715e">#计算某个字段出现的次数</span>
+</span></span><span style="display:flex;"><span>awk <span style="color:#e6db74">&#39;{ if ($2 == &#34;value&#34;) count++ } END { print count }&#39;</span> filename <span style="color:#75715e">#计算某个字段中特定值的出现次数</span>
+</span></span></code></pre></div><p><strong>pattern</strong>：一个条件表达式，如果满足条件，那么后面的 action 将被执行。
+<strong>action</strong>：当 pattern 匹配成功时执行的一系列命令。
+<strong>filename</strong>：要处理的文件名。</p>
+<h2 id="42resolvectl-status-查询和控制系统dns解析服务">42.resolvectl status 查询和控制系统DNS解析服务</h2>
+<p>主要用于与 systemd-resolved 服务交互，后者是 systemd 的一部分，负责处理系统的DNS查询和缓存结果。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>resolvectl <span style="color:#f92672">[</span>OPTIONS...<span style="color:#f92672">]</span> COMMAND ...
+</span></span></code></pre></div><p><strong>OPTIONS</strong> 是命令行选项，用于改变 resolvectl 的行为，
+<strong>COMMAND</strong> 是想要执行的具体操作。</p>
+<p><code>-4</code>: 仅使用 IPv4 查询。
+<code>-6</code>: 仅使用 IPv6 查询。
+<code>-i IFACE</code>: 指定查询所用的网络接口。
+<code>-p PORT</code>: 指定查询所用的端口号。
+<code>-t TYPE</code>: 指定查询的 DNS 资源记录类型。
+<code>-c CLASS</code>: 指定查询的 DNS 类别。
+<code>-d</code>: 启用调试输出。
+<code>-h</code>: 显示帮助信息。
+<code>-V</code>: 显示版本信息。</p>
+<h2 id="43ping-网络诊断">43.ping 网络诊断</h2>
+<p>它通过发送 ICMP（Internet Control Message Protocol）回声请求消息给目标主机，并监听回声应答来检查网络连接。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ping <span style="color:#f92672">[</span>选项<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>目标主机<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p><strong>目标主机</strong>：可以是IP地址或域名</p>
+<p><code>-c</code>：发送指定数量的回声请求
+<code>-s</code>：指定发送的数据包大小（字节）
+<code>-i</code>：指定发送回声请求的时间间隔（秒）
+<code>-t</code>：设置生存时间（TTL）
+<code>-W</code>：设置等待回声应答的超时时间（秒）
+<code>-v</code>：输出详细的诊断信息</p>
+<h2 id="44netstat-显示网络状态">44.netstat 显示网络状态</h2>
+<p>它可以提供关于网络连接、路由表、接口状态、伪装连接以及广播域成员等多种网络信息。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>netstat -a <span style="color:#75715e">#显示所有连接</span>
+</span></span><span style="display:flex;"><span>netstat -t <span style="color:#75715e">#列出 TCP 协议的连接</span>
+</span></span><span style="display:flex;"><span>netstat -u <span style="color:#75715e">#列出 UDP 协议的连接</span>
+</span></span><span style="display:flex;"><span>netstat -n <span style="color:#75715e">#禁用反向域名解析，这可以加快查询速度</span>
+</span></span></code></pre></div><h2 id="45ss-显示-socket-统计信息">45.ss 显示 socket 统计信息</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ss <span style="color:#f92672">[</span>options<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p><code>-a</code>：显示所有的套接字，包括监听和非监听的
+<code>-t</code>：仅显示 TCP 套接字
+<code>-u</code>：仅显示 UDP 套接字
+<code>-n</code>：以数字形式显示地址，而不是解析成主机名
+<code>-r</code>：将主机名解析为 IP 地址
+<code>-i</code>：显示详细的内部信息。
+<code>-o</code>：显示 TCP 计时器信息
+<code>-K</code>：通过 ID 杀死指定的 socket
+<code>-f</code>：指定协议族（如 inet, inet6, unix, link）
+<code>-v</code>：显示详细的输出</p>
+<h2 id="46iptables-配置网络流量的包过滤规则">46.iptables 配置网络流量的包过滤规则</h2>
+<p>iptables 允许管理员设置规则来允许、拒绝、记录或修改经过 Linux 系统的网络流量。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>iptables -A链名 -j动作 规则条件  <span style="color:#75715e">#添加规则</span>
+</span></span></code></pre></div><p><code>-A</code> 表示在链的末尾追加规则，<code>-j</code> 指定规则匹配后执行的动作（如 ACCEPT、DROP、REJECT）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>iptables -D链名 -j动作 规则条件 <span style="color:#75715e">#删除规则</span>
+</span></span></code></pre></div><p><code>-D</code> 表示从链中删除规则</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>iptables -R链名 规则编号 -j动作 规则条件 <span style="color:#75715e">#修改规则</span>
+</span></span></code></pre></div><p><code>-R</code> 表示替换指定编号的规则</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>iptables -L链名 <span style="color:#75715e">#查看规则</span>
+</span></span><span style="display:flex;"><span>iptables -L链名 -v -n <span style="color:#75715e">#查看规则详细信息</span>
+</span></span></code></pre></div><p><code>-L</code> 表示列出链中的规则  <code>-v</code> 表示显示详细信息，<code>-n</code> 表示不解析域名</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>iptables-save &gt; /path/to/iptables.rules <span style="color:#75715e">#保存规则</span>
+</span></span><span style="display:flex;"><span>iptables-restore &lt; /path/to/iptables.rules <span style="color:#75715e">#恢复规则</span>
+</span></span></code></pre></div><h2 id="47ufw-管理-iptables-防火墙规则">47.ufw 管理 iptables 防火墙规则</h2>
+<p>它是一个用户友好的前端界面，用于管理 iptables 防火墙规则。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo ufw enable <span style="color:#75715e">#启用</span>
+</span></span><span style="display:flex;"><span>sudo ufw disable <span style="color:#75715e">#禁用</span>
+</span></span><span style="display:flex;"><span>sudo ufw status <span style="color:#75715e">#查看当前 ufw 状态</span>
+</span></span><span style="display:flex;"><span>sudo ufw allow http <span style="color:#75715e">#允许特定服务（例如 HTTP）</span>
+</span></span></code></pre></div><h2 id="48uname-显示关于当前系统的特定信息">48.uname 显示关于当前系统的特定信息</h2>
+<p>这个命令是 &ldquo;Unix name&rdquo; 的缩写，它可以提供包括内核名称、节点名称、内核发布号、节点名称、系统版本号、机器类型、处理器类型等信息。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>uname <span style="color:#f92672">[</span>选项<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p><code>-a</code> 或 &ndash;all：显示所有信息。
+<code>-s</code> 或 &ndash;kernel-name：显示内核名称。
+<code>-n</code> 或 &ndash;nodename：显示网络节点名称。
+<code>-v</code> 或 &ndash;version：显示内核版本。
+<code>-r</code> 或 &ndash;release：显示系统版本。
+<code>-m</code> 或 &ndash;machine：显示机器类型。
+<code>-p</code> 或 &ndash;processor：显示处理器类型。
+<code>-i</code> 或 &ndash;hardward-platform：显示硬件平台。
+<code>-o</code> 或 &ndash;opeating-system：显示操作系统名称。</p>
+<h2 id="49neofetch-显示系统的基本信息和硬件配置">49.neofetch 显示系统的基本信息和硬件配置</h2>
+<p>neofetch 能够快速获取关键系统信息，如操作系统、内核、运行时间、软件包、Shell、分辨率、桌面环境、窗口管理器、主题和图标等。
+在终端中输入 neofetch 命令，即可显示默认输出，其中包含发行版的 ASCII 徽标和一些系统信息：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>neofetch
+</span></span></code></pre></div><h2 id="50cal-在终端中显示一个简单的日历">50.cal 在终端中显示一个简单的日历</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cal
+</span></span><span style="display:flex;"><span>cal -y <span style="color:#75715e"># 显示当前整年的日历</span>
+</span></span><span style="display:flex;"><span>cal -m <span style="color:#75715e"># 显示当前月份的日历，并且这个日历是从周一开始的</span>
+</span></span></code></pre></div><h2 id="51free-显示系统内存使用情况">51.free 显示系统内存使用情况</h2>
+<p>它可以显示物理内存和交换空间（swap）的总量、已用量、空闲量以及缓冲区和缓存的使用情况。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>free
+</span></span><span style="display:flex;"><span>free -h <span style="color:#75715e"># 将输出格式化为人类可读的格式</span>
+</span></span><span style="display:flex;"><span>free -m <span style="color:#75715e"># 查看交换空间（以 MB 为单位）</span>
+</span></span><span style="display:flex;"><span>free -g <span style="color:#75715e"># 显示内存和交换空间使用情况（以 GB 为单位）</span>
+</span></span><span style="display:flex;"><span>free -t <span style="color:#75715e"># 显示内存的详细统计信息</span>
+</span></span></code></pre></div><ul>
+<li>总内存 (total)</li>
+<li>已用内存 (used)</li>
+<li>空闲内存 (free)</li>
+<li>缓冲区和缓存占用的内存 (buffers 和 cache)</li>
+</ul>
+<h2 id="52df-显示文件系统的磁盘空间使用情况">52.df 显示文件系统的磁盘空间使用情况</h2>
+<p>它会显示每个挂载的文件系统的总空间、已用空间、可用空间以及挂载点。df 是查看磁盘空间使用情况的一个非常实用的命令，尤其在系统维护和监控时非常有用。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>df
+</span></span></code></pre></div><p><code>-h</code>（human-readable）：以更易读的格式（如 KB、MB、GB）显示空间。
+<code>-T</code>：显示每个文件系统的类型。
+<code>-i</code>：显示 inode 使用情况，而不是磁盘空间。
+<code>--total</code>：显示所有文件系统的总使用情况。</p>
+<h2 id="53ps-显示当前系统中进程状态">53.ps 显示当前系统中进程状态</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ps <span style="color:#75715e"># 只会显示当前终端会话中的进程信息</span>
+</span></span></code></pre></div><p><code>a</code>：显示所有用户的进程。
+<code>u</code>：以用户格式显示进程。
+<code>x</code>：显示没有控制终端的进程（包括后台进程）。
+<code>e</code>：显示所有进程。
+<code>f</code>：显示进程树。
+<code>l</code>：显示长格式的信息。
+<code>p PID</code>：显示指定进程的详细信息。</p>
+<h2 id="54top-实时查看系统的资源使用情况">54.top 实时查看系统的资源使用情况</h2>
+<p>适合用于实时监控系统状态，尤其是在处理服务器性能调优时。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>top <span style="color:#75715e"># 启动 top 命令，默认显示所有正在运行的进程及系统资源使用情况。</span>
+</span></span><span style="display:flex;"><span>top -u username <span style="color:#75715e"># 显示指定用户 (username) 的进程。</span>
+</span></span><span style="display:flex;"><span>top -p pid <span style="color:#75715e"># 显示指定进程 ID (pid) 的信息。</span>
+</span></span><span style="display:flex;"><span>top -d seconds <span style="color:#75715e"># 设置刷新间隔，seconds 是刷新时间的秒数，默认是 3 秒。</span>
+</span></span><span style="display:flex;"><span>top -n number <span style="color:#75715e"># 设置更新次数，number 是显示的更新次数。</span>
+</span></span></code></pre></div><h2 id="55htop-交互式的进程查看器">55.htop 交互式的进程查看器</h2>
+<p>htop 允许用户通过上下箭头键选择并操作进程。它提供了更直观的图形界面，可以更轻松地监视 CPU、内存、进程等资源的使用情况。
+在 Ubuntu/Debian 系统上，使用以下命令安装：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get install htop
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>htop
+</span></span></code></pre></div><p>常用操作：</p>
+<ul>
+<li>F3: 搜索进程</li>
+<li>F4: 过滤进程</li>
+<li>F5: 切换到树形视图</li>
+<li>F6: 排序列，选择排序依据</li>
+<li>F9: 杀死进程</li>
+<li>F10: 退出</li>
+</ul>
+<p>htop 的界面会显示如下信息：</p>
+<ul>
+<li>CPU: 显示每个 CPU 核心的使用情况。</li>
+<li>Memory: 显示内存的使用情况。</li>
+<li>Swap: 显示交换分区的使用情况。</li>
+<li>Task: 显示当前运行的进程列表，支持排序和过滤。</li>
+</ul>
+<h2 id="56kill-终止或发送信号到进程">56.kill 终止或发送信号到进程</h2>
+<p>默认情况下，它发送 SIGTERM（信号 15），请求进程正常终止。可以使用不同的信号来控制进程的行为。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kill -l <span style="color:#75715e"># 列出所有可用的信号</span>
+</span></span><span style="display:flex;"><span>kill -&lt;signal_number&gt; &lt;PID&gt; <span style="color:#75715e"># 发送特定信号</span>
+</span></span><span style="display:flex;"><span>kill -9 &lt;PID&gt; <span style="color:#75715e"># 强制结束进程（发送 SIGKILL 信号，进程不会处理）</span>
+</span></span></code></pre></div><h2 id="57pkill-根据进程名称或其他条件终止进程">57.pkill 根据进程名称或其他条件终止进程</h2>
+<p>它是 kill 命令的一个更高级的版本，可以使用进程名、用户、进程组等条件来查找并终止进程，而无需指定进程的 PID（进程标识符）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pkill <span style="color:#f92672">[</span>选项<span style="color:#f92672">]</span> &lt;进程名&gt;
+</span></span></code></pre></div><p><code>-u &lt;用户&gt;</code>: 根据指定的用户名杀死该用户所有的进程。
+<code>-f</code>: 匹配完整的命令行，而不仅仅是进程名。
+<code>-9</code>: 强制杀死进程，类似于 kill -9，使用 SIGKILL 信号。
+<code>-l</code>: 列出所有匹配的进程名称。
+<code>-n</code>: 终止最早启动的匹配进程。
+<code>-o</code>: 终止最晚启动的匹配进程。</p>
+<h2 id="58systemctl-管理-systemd-系统和服务管理器">58.systemctl 管理 systemd 系统和服务管理器</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl start 服务名 <span style="color:#75715e"># 启动服务</span>
+</span></span><span style="display:flex;"><span>sudo systemctl stop 服务名 <span style="color:#75715e"># 停止服务</span>
+</span></span><span style="display:flex;"><span>sudo systemctl restart 服务名 <span style="color:#75715e"># 重启服务</span>
+</span></span><span style="display:flex;"><span>sudo systemctl status 服务名 <span style="color:#75715e"># 查看服务状态</span>
+</span></span><span style="display:flex;"><span>sudo systemctl enable 服务名 <span style="color:#75715e"># 用服务开机启动</span>
+</span></span><span style="display:flex;"><span>sudo systemctl disable 服务名 <span style="color:#75715e"># 禁用服务开机启动</span>
+</span></span><span style="display:flex;"><span>sudo systemctl daemon-reload <span style="color:#75715e"># 重新加载 systemd 配置</span>
+</span></span></code></pre></div><h2 id="59history-显示当前用户在终端中执行过的命令历史">59.history 显示当前用户在终端中执行过的命令历史</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>history
+</span></span><span style="display:flex;"><span>history <span style="color:#ae81ff">10</span> <span style="color:#75715e"># 显示最近的 10 条命令历史</span>
+</span></span><span style="display:flex;"><span>history -c <span style="color:#75715e"># 清除命令历史</span>
+</span></span><span style="display:flex;"><span>history -w <span style="color:#75715e"># 将命令历史写入文件</span>
+</span></span><span style="display:flex;"><span>history -r <span style="color:#75715e"># 从历史文件读取命令</span>
+</span></span></code></pre></div><p>默认情况下，历史记录会保存在 ~/.bash_history 文件中，且可以通过 HISTSIZE（控制命令历史的条数）和 HISTFILESIZE（控制历史文件的最大大小）进行调整。</p>
+<h2 id="60reboot-重启系统">60.reboot 重启系统</h2>
+<p>这个命令通常是通过具有管理员权限的用户来执行的，比如root用户，或者是一个拥有足够权限的用户（例如，通过使用sudo命令）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>reboot
+</span></span><span style="display:flex;"><span>sudo reboot <span style="color:#75715e"># 立即重启系统（需要根权限）</span>
+</span></span><span style="display:flex;"><span>sudo reboot +5 <span style="color:#75715e"># 在延迟之后重启系统</span>
+</span></span><span style="display:flex;"><span>sudo reboot 22:00 <span style="color:#75715e"># 在特定的时间重启系统</span>
+</span></span></code></pre></div><h2 id="61shutdown-关闭计算机或重新启动计算机">61.shutdown 关闭计算机或重新启动计算机</h2>
+<p>它可以让你在指定的时间内优雅地关闭系统，通知所有用户系统即将关闭，并可以选择进行重启或关闭。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo shutdown now <span style="color:#75715e"># 立即关闭系统</span>
+</span></span><span style="display:flex;"><span>sudo shutdown +10 <span style="color:#75715e"># 会在 10 分钟后关闭系统</span>
+</span></span><span style="display:flex;"><span>sudo shutdown -c <span style="color:#75715e"># 取消关机</span>
+</span></span><span style="display:flex;"><span>sudo shutdown -r now <span style="color:#75715e"># 立即重启系统</span>
+</span></span><span style="display:flex;"><span>sudo shutdown -h +5 <span style="color:#e6db74">&#34;System going down for maintenance&#34;</span> <span style="color:#75715e"># 令将在 5 分钟后关闭系统，并通知所有用户系统将被关闭</span>
+</span></span></code></pre></div><p><code>-h</code>：表示关机（halt）。
+<code>-r</code>：表示重启（reboot）。
+<code>+m</code>：表示在 m 分钟后执行操作。
+<code>now</code>：立即执行操作。
+<code>-c</code>：取消已安排的关机。
+<code>message</code>：自定义关机前通知消息</p>
+</section>
+
+  <footer class="mt-12 flex flex-wrap"><a
+      class="mb-1.5 rounded-lg bg-black/[3%] px-5 py-1 no-underline hover:bg-black/[6%] ltr:mr-1.5 rtl:ml-1.5 dark:bg-white/[8%] dark:hover:bg-white/[12%]"
+      href="https://yatingliu2019.github.io/tags/linux%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95"
+      >Linux学习记录</a
+    ></footer><nav
+    class="mt-24 flex overflow-hidden rounded-xl bg-black/[3%] text-lg leading-[1.2]! *:flex *:w-1/2 *:items-center *:p-5 *:font-medium *:no-underline dark:bg-white/[8%] [&>*:hover]:bg-black/[2%] dark:[&>*:hover]:bg-white/[3%]"
+  ><a class="ltr:pr-3 rtl:pl-3" href="https://yatingliu2019.github.io/post/test-again/"
+      ><span class="ltr:mr-1.5 rtl:ml-1.5">←</span><span>test again</span></a
+    ><a
+      class="justify-end pl-3 ltr:ml-auto rtl:mr-auto"
+      href="https://yatingliu2019.github.io/post/clipcap/"
+      ><span>Clipcap学习笔记</span><span class="ltr:ml-1.5 rtl:mr-1.5">→</span></a
+    ></nav></article></main><footer
+  class="mx-auto flex h-[4.5rem] max-w-(--w) items-center px-8 text-xs tracking-wider uppercase opacity-60"
+>
+  <div class="mr-auto">© 2025, lyt.so</div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >powered by hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >hugo-paper</a
+  >
+</footer>
+</body>
+</html>
