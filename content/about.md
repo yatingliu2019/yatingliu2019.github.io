@@ -2,7 +2,7 @@
 title = "教育经历及科研竞赛"
 description = "教育经历及科研竞赛"
 date = "2019-02-28"
-aliases = ["about-us", "about-hugo", "contact"]
+aliases = ["about-us", "about-hugo"]
 author = "lyt"
 +++
 
