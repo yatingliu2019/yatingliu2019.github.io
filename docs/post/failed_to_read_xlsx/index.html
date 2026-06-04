@@ -64,27 +64,27 @@ contents = pd.read_excel(`&lt;name-of-file&gt;.xlsx`, engine=`openpyxl`)
     href="https://yatingliu2019.github.io/apple-touch-icon.png"
   />
 
-  <meta name="generator" content="Hugo 0.145.0">
-  <meta itemprop="name" content="pthon | 使用 xlrd 读取 .xlsx 文件失败">
-  <meta itemprop="description" content="failed to read .xlsx">
-  <meta itemprop="datePublished" content="2021-03-31T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2021-03-31T00:00:00+00:00">
-  <meta itemprop="wordCount" content="47">
-  <meta itemprop="keywords" content="Python,错误解决"><meta property="og:url" content="https://yatingliu2019.github.io/post/failed_to_read_xlsx/">
-  <meta property="og:site_name" content="Liuyating&#39;s Blog">
-  <meta property="og:title" content="pthon | 使用 xlrd 读取 .xlsx 文件失败">
-  <meta property="og:description" content="failed to read .xlsx">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="post">
-    <meta property="article:published_time" content="2021-03-31T00:00:00+00:00">
-    <meta property="article:modified_time" content="2021-03-31T00:00:00+00:00">
-    <meta property="article:tag" content="Python">
-    <meta property="article:tag" content="错误解决">
+  <meta name="generator" content="Hugo 0.162.1">
+	<meta itemprop="name" content="pthon | 使用 xlrd 读取 .xlsx 文件失败">
+	<meta itemprop="description" content="failed to read .xlsx">
+	<meta itemprop="datePublished" content="2021-03-31T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2021-03-31T00:00:00+00:00">
+	<meta itemprop="wordCount" content="47">
+	<meta itemprop="keywords" content="Python,错误解决"><meta property="og:url" content="https://yatingliu2019.github.io/post/failed_to_read_xlsx/">
+	<meta property="og:site_name" content="Liuyating&#39;s Blog">
+	<meta property="og:title" content="pthon | 使用 xlrd 读取 .xlsx 文件失败">
+	<meta property="og:description" content="failed to read .xlsx">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="post">
+		<meta property="article:published_time" content="2021-03-31T00:00:00+00:00">
+		<meta property="article:modified_time" content="2021-03-31T00:00:00+00:00">
+		<meta property="article:tag" content="Python">
+		<meta property="article:tag" content="错误解决">
 
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="pthon | 使用 xlrd 读取 .xlsx 文件失败">
-  <meta name="twitter:description" content="failed to read .xlsx">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="pthon | 使用 xlrd 读取 .xlsx 文件失败">
+	<meta name="twitter:description" content="failed to read .xlsx">
 
   <link rel="canonical" href="https://yatingliu2019.github.io/post/failed_to_read_xlsx/" />
 </head>
@@ -198,13 +198,13 @@ contents = pd.read_excel(`&lt;name-of-file&gt;.xlsx`, engine=`openpyxl`)
 你已在群集上安装 xlrd，并且在尝试读取 Excel .xlsx 格式的文件时遇到错误。如图。
 <img src="/images/pythonxlsximg.png" alt="name"></p>
 <p>错误提示：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>XLRDError: Excel xlsx file; not supported
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>XLRDError: Excel xlsx file; not supported
 </span></span></code></pre></div><p>原因：</p>
 <p>xlrd 2.0.0 及更高版本只能读取 .xls 文件。</p>
 <p>由于潜在的安全漏洞，已从 <code>xlrd</code> 中删除对 .xlsx 文件的支持。</p>
 <p>解决方案：</p>
 <p>使用 <code>openpyxl</code> 而不是 <code>xlrd</code> 打开 .xlsx 文件。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>在使用 pandas 读取 <span style="color:#f92672">.</span>xlsx 文件时指定 openpyxl
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>在使用 pandas 读取 <span style="color:#f92672">.</span>xlsx 文件时指定 openpyxl
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
 </span></span><span style="display:flex;"><span>contents <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_excel(<span style="color:#960050;background-color:#1e0010">`</span><span style="color:#f92672">&lt;</span>name<span style="color:#f92672">-</span>of<span style="color:#f92672">-</span>file<span style="color:#f92672">&gt;.</span>xlsx<span style="color:#960050;background-color:#1e0010">`</span>, engine<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">`</span>openpyxl<span style="color:#960050;background-color:#1e0010">`</span>)
 </span></span></code></pre></div><p>​</p>

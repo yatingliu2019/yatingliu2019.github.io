@@ -77,27 +77,27 @@ from transformers import GPT2Tokenizer, GPT2LMHeadModel, AdamW, get_linear_sched
     href="https://yatingliu2019.github.io/apple-touch-icon.png"
   />
 
-  <meta name="generator" content="Hugo 0.145.0">
-  <meta itemprop="name" content="Clipcap学习笔记">
-  <meta itemprop="description" content="A learning record of clipcap">
-  <meta itemprop="datePublished" content="2023-12-26T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2023-12-26T00:00:00+00:00">
-  <meta itemprop="wordCount" content="147">
-  <meta itemprop="keywords" content="深度学习,Clipcap学习记录"><meta property="og:url" content="https://yatingliu2019.github.io/post/clipcap/">
-  <meta property="og:site_name" content="Liuyating&#39;s Blog">
-  <meta property="og:title" content="Clipcap学习笔记">
-  <meta property="og:description" content="A learning record of clipcap">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="post">
-    <meta property="article:published_time" content="2023-12-26T00:00:00+00:00">
-    <meta property="article:modified_time" content="2023-12-26T00:00:00+00:00">
-    <meta property="article:tag" content="深度学习">
-    <meta property="article:tag" content="Clipcap学习记录">
+  <meta name="generator" content="Hugo 0.162.1">
+	<meta itemprop="name" content="Clipcap学习笔记">
+	<meta itemprop="description" content="A learning record of clipcap">
+	<meta itemprop="datePublished" content="2023-12-26T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2023-12-26T00:00:00+00:00">
+	<meta itemprop="wordCount" content="147">
+	<meta itemprop="keywords" content="深度学习,Clipcap学习记录"><meta property="og:url" content="https://yatingliu2019.github.io/post/clipcap/">
+	<meta property="og:site_name" content="Liuyating&#39;s Blog">
+	<meta property="og:title" content="Clipcap学习笔记">
+	<meta property="og:description" content="A learning record of clipcap">
+	<meta property="og:locale" content="en">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="post">
+		<meta property="article:published_time" content="2023-12-26T00:00:00+00:00">
+		<meta property="article:modified_time" content="2023-12-26T00:00:00+00:00">
+		<meta property="article:tag" content="深度学习">
+		<meta property="article:tag" content="Clipcap学习记录">
 
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Clipcap学习笔记">
-  <meta name="twitter:description" content="A learning record of clipcap">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Clipcap学习笔记">
+	<meta name="twitter:description" content="A learning record of clipcap">
 
   <link rel="canonical" href="https://yatingliu2019.github.io/post/clipcap/" />
 </head>
@@ -210,9 +210,9 @@ from transformers import GPT2Tokenizer, GPT2LMHeadModel, AdamW, get_linear_sched
   <section><h2 id="一配置学习">一、配置学习</h2>
 <p>新建虚拟环境</p>
 <p>必须要有python的版本，否则pip之类的都用不了</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>conda create -n clipcap python<span style="color:#f92672">=</span>3.8
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>conda create -n clipcap python<span style="color:#f92672">=</span>3.8
 </span></span></code></pre></div><p>启动环境</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>conda activate clipcap
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>conda activate clipcap
 </span></span></code></pre></div><h2 id="二运行github文件">二、运行github文件</h2>
 <p>参考<a href="https://github.com/yangjianxin1/ClipCap-Chinese/tree/master">Github链接</a>，下载zip文件，然后上传到MobaXterm，参考<a href="http://t.csdnimg.cn/kkTzg">MoaXterm博文</a></p>
 <p>改变路径<code>cd &lt;路径&gt;</code>，激活环境<code>conda activate clipcap</code></p>
@@ -222,7 +222,7 @@ from transformers import GPT2Tokenizer, GPT2LMHeadModel, AdamW, get_linear_sched
 <p>再次运行<code>python process_flickr.py</code>，发现还少东西，dataset没有数据集flickr30k</p>
 <p>flickr30k<a href="https://shannon.cs.illinois.edu/DenotationGraph/">下载官网</a>，填好表格，会给你的邮箱发送下载链接。上传flickr30k-images.tar和flickr30k.tar.gz。</p>
 <p>解压flickr30k文件</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>tar -xvf flickr30k-images.tar
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>tar -xvf flickr30k-images.tar
 </span></span></code></pre></div><p>运行<code>bash scripts/train_finetune_gpt2.sh</code>，会报错，原因在于pre_model/gpt2的文件夹里面少pytorch_model.bin文件
 PS:pytorch_model.bin是PyTorch模型的二进制文件，包含了训练好的模型权重参数。少GPT2的模型权重参数，当然没法继续。下载，上传到文件夹。再次运行。此时就可以成功训练了。</p>
 <h2 id="三clipcap代码阅读">三、clipcap代码阅读</h2>
